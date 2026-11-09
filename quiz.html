@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Квиз · Гаметогенез</title>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:'Golos Text','Segoe UI',Arial,sans-serif;background:linear-gradient(160deg,#EEE8FF,#E0F7F4);min-height:100vh;color:#14213D}
+.w{max-width:520px;margin:0 auto;padding:18px 16px 40px}
+.top{display:flex;align-items:center;gap:10px;font-weight:800}.top small{color:#5B6B86;font-weight:600}
+.card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 26px rgba(20,33,61,.08);margin-top:14px}
+h1{font-size:24px;margin:0 0 6px}h2{font-size:21px;margin:0 0 12px;line-height:1.3}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:16px;font-size:19px;font-weight:800;font-family:inherit;background:#6C4BD8;color:#fff;margin-top:10px;cursor:pointer}
+.btn.sec{background:#EEF1F8;color:#14213D}
+.opt{display:block;width:100%;text-align:left;border:2px solid #E1E7F0;background:#fff;border-radius:16px;padding:14px 16px;font-size:18px;font-weight:700;font-family:inherit;margin-top:10px;cursor:pointer;color:#14213D}
+.opt.sel{border-color:#6C4BD8;background:#F1ECFF}.opt.ok{border-color:#1E9E7A;background:#DFF5EE}.opt.no{border-color:#D64545;background:#FDE4E4}
+select,input,textarea{width:100%;font-size:18px;font-family:inherit;padding:14px;border-radius:14px;border:2px solid #E1E7F0;margin-top:8px}
+.tbar{height:10px;border-radius:6px;background:#E7EBF4;overflow:hidden;margin:10px 0}.tbar i{display:block;height:100%;background:linear-gradient(90deg,#6C4BD8,#00A6A6);transition:width .2s linear}
+.mut{color:#5B6B86}.big{font-size:56px;font-weight:900;text-align:center}
+.seq{display:flex;flex-wrap:wrap;gap:6px;min-height:44px;margin-top:8px}.seq span{background:#6C4BD8;color:#fff;border-radius:10px;padding:6px 10px;font-weight:800}
+
+body{background:linear-gradient(160deg,#E3FFF4 0%,#E4F4FF 45%,#F7EAFF 75%,#FFE7F2 100%) fixed}
+.btn{background:linear-gradient(135deg,#00B386,#00A3C4)!important;box-shadow:0 8px 18px rgba(0,163,150,.25)}
+.btn.sec{background:#EAF8F3!important;box-shadow:none}
+.opt.sel{border-color:#00B386;background:#E3FFF4}
+.tbar i{background:linear-gradient(90deg,#00B386,#00B4D8,#E0398C)}
+.card{box-shadow:inset 0 5px 0 #00B386,0 10px 26px rgba(20,33,61,.08)}
+.seq span{background:linear-gradient(135deg,#00B386,#3B5BFF)}
+.pts button.on{background:linear-gradient(135deg,#00B386,#7BC800);border-color:#00B386}
+.tabs button.on{background:linear-gradient(135deg,#0B6E58,#1A4FB8);border-color:#0B6E58}
+.sum{background:linear-gradient(90deg,#063D3A,#1A3E9E)!important}
+h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</head>
+<body><div class="w"><div class="top">🧬 <span>Гаметогенез · квиз<br><small id="who">қосылуда…</small></span></div><div id="app"><div class="card">⏳ Қосылуда…</div></div></div>
+<script src="lesson-data.js"></script><script src="core.js"></script>
+<script>
+(async function () {
+  const LD = window.LD, GT = window.GT, esc = GT.esc, app = document.getElementById('app');
+  const code = GT.code(); if (!code) { app.innerHTML = '<div class="card">QR кодты тақтадан қайта сканерлеңіз.</div>'; return; }
+  const db = await GT.backend(); const P = 'games/' + code;
+  let game = {}, me = null, qi = 0, chosen = null, qStart = 0, timerI = null, order = [];
+  const LSK = 'gt_q_' + code;
+  try { me = JSON.parse(localStorage.getItem(LSK) || 'null'); } catch (e) {}
+  let lastKey = '', busy = false;
+  db.on(P, (v) => { game = v || {}; render(); });
+  function myAns() { const a = game.answers || {}; return LD.quiz.map((q, i) => a[i] && a[i][db.uid]); }
+  function render() {
+    if (busy) return;
+    const meta = game.meta || {};
+    const mine0 = me ? myAns() : []; const nx = mine0.findIndex((a) => !a);
+    const key = !meta.host ? 'none' : !me ? 'join' + JSON.stringify(GT.arr(meta.roster)) : nx === -1 ? 'fin' : !meta.quiz ? 'wait' : 'q' + nx;
+    if (key === lastKey) return; lastKey = key;
+    if (!meta.host) { app.innerHTML = '<div class="card">Сабақ табылмады. Тақтадағы QR-ды қайта сканерлеңіз.</div>'; return; }
+    if (!me) return join(meta);
+    document.getElementById('who').textContent = me.name + ' · ' + (LD.groups[me.g] ? LD.groups[me.g].short : '');
+    const mine = myAns(); const next = mine.findIndex((a) => !a);
+    if (next === -1) return finish(mine);
+    if (!meta.quiz) { app.innerHTML = `<div class="card"><h1>Сәлем, ${esc(me.name)}!</h1><p class="mut">Мұғалім квизді ашқанда сұрақтар осында шығады. Телефонды жаппаңыз 🙂</p><div class="big">⏳</div></div>`; return; }
+    ask(next);
+  }
+  function join(meta) {
+    const roster = GT.arr(meta.roster);
+    app.innerHTML = `<div class="card"><h1>Квизге кіру</h1><p class="mut">Есіміңізді таңдаңыз</p>
+      ${roster.length ? `<select id="nm"><option value="">— таңдаңыз —</option>${LD.groups.map((g, gi) => `<optgroup label="${g.icon} ${esc(g.name)}">${roster.map((p, i) => p.g === gi ? `<option value="${i}">${esc(p.name)}</option>` : '').join('')}</optgroup>`).join('')}</select><p class="mut" style="font-size:15px">Тізімде жоқ болсаңыз — төменге жазыңыз</p>` : ''}
+      <input id="nm2" placeholder="Аты-жөні" maxlength="40">
+      <select id="gr">${LD.groups.map((g, gi) => `<option value="${gi}">${g.icon} ${esc(g.name)}</option>`).join('')}</select>
+      <button class="btn" id="go">Кіру →</button></div>`;
+    const sel = document.getElementById('nm');
+    if (sel) sel.onchange = () => { const p = roster[sel.value]; if (p) { document.getElementById('nm2').value = p.name; document.getElementById('gr').value = p.g; } };
+    document.getElementById('go').onclick = async () => {
+      const name = document.getElementById('nm2').value.trim(); const g = +document.getElementById('gr').value;
+      if (name.length < 2) return alert('Есіміңізді жазыңыз');
+      me = { name, g }; localStorage.setItem(LSK, JSON.stringify(me)); lastKey = '';
+      try { await db.set(P + '/players/' + db.uid, { name, g }); } catch (e) { alert('Қате: ' + (e.code || e.message)); }
+      render();
+    };
+  }
+  function ask(i) {
+    qi = i; chosen = null; order = []; const q = LD.quiz[i];
+    const k = 'gt_qs_' + code + '_' + i; qStart = +localStorage.getItem(k) || Date.now(); localStorage.setItem(k, qStart);
+    let body = '';
+    if (q.t === 'mc') body = q.o.map((o, j) => `<button class="opt" data-v="${j}">${'АӘБВ'[j]}) ${esc(o)}</button>`).join('');
+    if (q.t === 'tf') body = `<button class="opt" data-v="1">✓ Дұрыс</button><button class="opt" data-v="0">✗ Бұрыс</button>`;
+    if (q.t === 'num') body = `<input id="num" inputmode="numeric" placeholder="Санды жазыңыз">`;
+    if (q.t === 'order') body = `<div class="seq" id="seq"></div>` + q.o.map((o, j) => `<button class="opt" data-o="${j}">${esc(o)}</button>`).join('') + `<button class="btn sec" id="clr">↺ Қайта</button>`;
+    app.innerHTML = `<div class="card"><div class="mut">${i + 1}-сұрақ / ${LD.quiz.length}</div><div class="tbar"><i id="tb" style="width:100%"></i></div><h2>${esc(q.q)}</h2>${body}<button class="btn" id="ok">Жауап беру</button></div>`;
+    app.querySelectorAll('[data-v]').forEach((b) => b.onclick = () => { app.querySelectorAll('[data-v]').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); chosen = q.t === 'tf' ? b.dataset.v === '1' : +b.dataset.v; });
+    app.querySelectorAll('[data-o]').forEach((b) => b.onclick = () => { const j = +b.dataset.o; if (order.includes(j)) return; order.push(j); b.style.opacity = .35; document.getElementById('seq').innerHTML = order.map((x, n) => `<span>${n + 1}. ${esc(q.o[x])}</span>`).join(''); });
+    const clr = document.getElementById('clr'); if (clr) clr.onclick = () => { order = []; document.getElementById('seq').innerHTML = ''; app.querySelectorAll('[data-o]').forEach((b) => b.style.opacity = 1); };
+    document.getElementById('ok').onclick = () => submit();
+    clearInterval(timerI); timerI = setInterval(() => { const left = LD.quizTime - (Date.now() - qStart) / 1000; const tb = document.getElementById('tb'); if (tb) tb.style.width = Math.max(0, left / LD.quizTime * 100) + '%'; if (left <= 0) submit(true); }, 200);
+  }
+  async function submit(timeout) {
+    const q = LD.quiz[qi]; let v = chosen;
+    if (q.t === 'num') { const x = (document.getElementById('num') || {}).value; v = x ? x.trim() : null; }
+    if (q.t === 'order') v = order.length === q.o.length ? order.slice() : null;
+    if (!timeout && (v === null || v === undefined || v === '')) return alert('Жауапты таңдаңыз');
+    clearInterval(timerI); timerI = null;
+    const ok = GT.isRight(q, v);
+    try { await db.set(P + '/answers/' + qi + '/' + db.uid, { v: v === undefined ? null : v, t: db.TS }); } catch (e) { /* бұрын жауап берілген */ }
+    app.innerHTML = `<div class="card" style="text-align:center"><div class="big">${ok ? '✅' : timeout && v == null ? '⏰' : '❌'}</div><h2>${ok ? 'Дұрыс!' : 'Дұрыс жауап:'}</h2>${ok ? '' : `<p style="font-size:18px;font-weight:700">${esc(answerText(q))}</p>`}</div>`;
+    GT.tone(ok ? 880 : 220, 0.25);
+    busy = true; setTimeout(() => { busy = false; lastKey = ''; render(); }, 1600);
+  }
+  function answerText(q) { if (q.t === 'mc') return q.o[q.a]; if (q.t === 'tf') return q.a ? 'Дұрыс' : 'Бұрыс'; if (q.t === 'order') return q.a.map((j) => q.o[j]).join(' → '); return String(q.a); }
+  function finish(mine) {
+    const c = mine.filter((a, i) => a && GT.isRight(LD.quiz[i], a.v)).length; const k7 = Math.min(4, Math.floor(c / 2));
+    const fb = (game.feedback || {})[db.uid];
+    app.innerHTML = `<div class="card" style="text-align:center"><div class="big">${c}/${LD.quiz.length}</div><h2>Квиз аяқталды! K7: ${k7} балл</h2></div>
+      <div class="card"><h2>Гаметогенезді түсіну деңгейім</h2>${LD.feedback.map((f) => `<button class="opt ${fb && fb.k === f.k ? 'sel' : ''}" data-f="${f.k}">${f.icon} <b>${esc(f.t)}</b><br><span class="mut" style="font-weight:600;font-size:15px">${esc(f.d)}</span></button>`).join('')}
+      <textarea id="ft" rows="2" maxlength="200" placeholder="Неге осы деңгейді таңдадың? (міндетті емес)">${fb && fb.text ? esc(fb.text) : ''}</textarea><button class="btn" id="fs">Жіберу</button><p id="fm" class="mut"></p></div>`;
+    let sel = fb ? fb.k : null;
+    app.querySelectorAll('[data-f]').forEach((b) => b.onclick = () => { app.querySelectorAll('[data-f]').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); sel = b.dataset.f; });
+    document.getElementById('fs').onclick = async () => { if (!sel) return alert('Деңгейді таңдаңыз'); try { await db.set(P + '/feedback/' + db.uid, { name: me.name, k: sel, text: document.getElementById('ft').value.slice(0, 200) }); document.getElementById('fm').textContent = '✓ Рақмет! Жіберілді.'; } catch (e) { alert('Қате: ' + (e.code || e.message)); } };
+  }
+})();
+</script>
+</body>
+</html>

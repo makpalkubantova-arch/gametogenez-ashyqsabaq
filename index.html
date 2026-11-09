@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Гаметогенез — ашық сабақ · 11-сынып биология</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+<style>
+:root{--ink:#14213D;--mut:#5B6B86;--bg:#F5F7FB;--card:#fff;--line:#E1E7F0;--acc:#6C4BD8;--acc2:#00A6A6;--warn:#F2994A;--ok:#1E9E7A;--bad:#D64545}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0E1426;font-family:'Golos Text','Segoe UI',Arial,sans-serif;color:var(--ink);overflow:hidden}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{width:1920px;height:1080px;position:relative;transform-origin:center center;background:radial-gradient(1200px 700px at 85% -10%,#E9E3FF 0,transparent 60%),radial-gradient(900px 600px at -10% 110%,#DDF6F3 0,transparent 60%),var(--bg);overflow:hidden;flex:none}
+#stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20px 20px,rgba(108,75,216,.06) 6px,transparent 7px),radial-gradient(circle at 60px 50px,rgba(0,166,166,.05) 4px,transparent 5px);background-size:90px 80px;pointer-events:none}
+header{position:absolute;left:0;right:0;top:0;height:112px;display:flex;align-items:center;gap:22px;padding:0 34px;z-index:30}
+.logo{width:78px;height:78px;flex:none;position:relative}
+.htitle{flex:1;min-width:0}
+.htitle small{display:block;font-size:20px;color:var(--mut);font-weight:600;letter-spacing:.3px}
+.htitle b{display:block;font-size:34px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:999px;padding:8px 16px;font-size:20px;font-weight:700;color:var(--ink)}
+#timer{display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--line);border-radius:22px;padding:8px 12px 8px 18px;box-shadow:0 6px 18px rgba(20,33,61,.07)}
+#tval{font-size:44px;font-weight:900;font-variant-numeric:tabular-nums;min-width:128px;text-align:center}
+#timer.low #tval{color:var(--bad)}
+.tb{width:52px;height:52px;border-radius:14px;border:0;background:#EEF1F8;font-size:24px;cursor:pointer;font-family:inherit;font-weight:800;color:var(--ink)}
+.tb:hover{background:#E1E6F3}
+#main{position:absolute;left:34px;right:34px;top:118px;bottom:138px;z-index:5}
+.slide{position:absolute;inset:0;animation:zoomIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes zoomIn{from{opacity:0;transform:scale(1.08);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.zoomable{cursor:zoom-in;transition:transform .5s}
+.zoomable:hover{transform:scale(1.02)}
+#zoomlay{position:absolute;inset:0;background:rgba(14,20,38,.82);z-index:60;display:none;align-items:center;justify-content:center;cursor:zoom-out}
+#zoomlay.on{display:flex}
+#zoomlay .zin{background:#fff;border-radius:28px;padding:30px;width:1500px;height:900px;display:flex;align-items:center;justify-content:center;animation:zoomBig .55s cubic-bezier(.2,.8,.2,1) both}
+#zoomlay .zin svg{width:100%;height:100%}
+@keyframes zoomBig{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.strip{position:absolute;left:0;right:0;bottom:0;height:132px;display:grid;grid-template-columns:1fr 1fr;z-index:40;font-size:23px;line-height:1.3}
+.strip>div{padding:16px 30px 16px 28px;display:flex;gap:16px;align-items:center}
+.strip .t{background:#14213D;color:#fff}
+.strip .s{background:#00A6A6;color:#fff}
+.strip .lab{flex:none;font-weight:900;font-size:19px;letter-spacing:1px;background:rgba(255,255,255,.16);border-radius:12px;padding:8px 12px;text-align:center;line-height:1.15}
+.nav{position:absolute;right:30px;bottom:150px;z-index:45;display:flex;gap:10px}
+.nav button{width:66px;height:66px;border-radius:50%;border:0;background:#14213D;color:#fff;font-size:30px;cursor:pointer;box-shadow:0 8px 20px rgba(20,33,61,.25)}
+.nav button.alt{background:#fff;color:#14213D;border:2px solid var(--line);font-size:24px}
+#dots{position:absolute;left:50%;transform:translateX(-50%);bottom:146px;z-index:45;display:flex;gap:7px;background:rgba(255,255,255,.9);padding:9px 14px;border-radius:999px;border:1px solid var(--line)}
+#dots i{width:14px;height:14px;border-radius:50%;background:#CED6E6;cursor:pointer;display:block}
+#dots i.on{background:var(--acc);transform:scale(1.25)}
+#dots i.ex{background:#A9E3D9}
+h1.st{margin:0 0 6px;font-size:52px;font-weight:900;letter-spacing:-.5px}
+.method{display:inline-flex;gap:10px;align-items:center;background:linear-gradient(90deg,#F1ECFF,#E3FAF6);border:2px solid #DDD3FF;border-radius:16px;padding:10px 18px;font-size:24px;font-weight:700;margin-bottom:18px}
+.method em{font-style:normal;color:var(--acc)}
+.where{margin-left:12px;font-size:20px;color:var(--mut);font-weight:600}
+.card{background:var(--card);border-radius:26px;border:2px solid var(--line);box-shadow:0 10px 28px rgba(20,33,61,.06);padding:26px 30px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.big{font-size:30px;line-height:1.35}
+.mut{color:var(--mut)}
+.btn{border:0;border-radius:16px;padding:14px 24px;font-size:22px;font-weight:800;font-family:inherit;cursor:pointer;background:var(--acc);color:#fff}
+.btn.sec{background:#EEF1F8;color:var(--ink)}
+.btn.ok{background:var(--ok)}
+.btn:disabled{opacity:.5;cursor:default}
+table.as{width:100%;border-collapse:separate;border-spacing:0;font-size:22px}
+table.as th{background:#14213D;color:#fff;text-align:left;padding:12px 14px;font-weight:700}
+table.as th:first-child{border-top-left-radius:14px}table.as th:last-child{border-top-right-radius:14px}
+table.as td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;background:#fff}
+table.as.cmp td{padding:5px 10px}table.as.cmp th{padding:8px 10px}
+#lanes svg{width:100%;height:100%}
+table.as td.k{font-weight:900;color:var(--acc);width:70px}
+table.as td.p{text-align:center;font-weight:900;width:80px}
+.pill{display:inline-block;border-radius:999px;padding:4px 12px;font-size:18px;font-weight:800}
+/* гид */
+#guide{position:absolute;left:24px;bottom:146px;z-index:50;display:flex;align-items:flex-end;gap:14px;pointer-events:none}
+#guide .med{width:150px;height:150px;flex:none;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 10px 18px rgba(20,33,61,.3));animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+#guide .bub{max-width:760px;background:#fff;border:3px solid #E5C76B;border-radius:24px 24px 24px 6px;padding:18px 24px;font-size:25px;line-height:1.35;box-shadow:0 14px 30px rgba(20,33,61,.18);transform-origin:left bottom;transition:.45s cubic-bezier(.2,.8,.2,1);margin-bottom:60px}
+#guide .bub b{display:block;font-size:17px;color:#9A7A1A;letter-spacing:.5px;margin-bottom:4px}
+#guide.hide .bub{opacity:0;transform:scale(.6)}
+#guide .eye{animation:blink 4.2s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes blink{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.1)}}
+#guide .mouth{transform-origin:center;transform-box:fill-box}
+#guide.talk .mouth{animation:talk .22s infinite alternate}
+@keyframes talk{from{transform:scaleY(.4)}to{transform:scaleY(1.4)}}
+/* баннер және санақ */
+#banner{position:absolute;top:126px;left:50%;transform:translate(-50%,-260px);z-index:70;background:#F2994A;color:#fff;font-size:34px;font-weight:900;padding:16px 36px;border-radius:20px;box-shadow:0 14px 30px rgba(0,0,0,.2);transition:.4s}
+#banner.on{transform:translate(-50%,0)}
+#count{position:absolute;inset:0;z-index:65;display:none;align-items:center;justify-content:center;pointer-events:none}
+#count.on{display:flex}
+#count span{font-size:420px;font-weight:900;color:rgba(214,69,69,.85);text-shadow:0 20px 50px rgba(214,69,69,.35);animation:pop 1s ease-out}
+@keyframes pop{from{transform:scale(1.6);opacity:0}30%{opacity:1}to{transform:scale(1);opacity:.85}}
+/* мұғалім панелі */
+#tp{position:absolute;inset:0;z-index:80;background:rgba(14,20,38,.6);display:none}
+#tp.on{display:block}
+#tp .in{position:absolute;inset:40px 60px;background:#fff;border-radius:30px;padding:30px 36px;overflow:auto;font-size:22px}
+#tp textarea{width:100%;height:330px;font-size:21px;font-family:inherit;border:2px solid var(--line);border-radius:16px;padding:14px}
+#tp h2{margin:0 0 10px;font-size:34px}
+#tp h3{margin:22px 0 10px;font-size:26px}
+.gbox{border-radius:20px;padding:16px 20px;border:3px solid}
+.gbox ul{list-style:none;margin:8px 0 0;padding:0}
+.gbox li{padding:6px 0;border-top:1px dashed #D5DCE8;display:flex;justify-content:space-between;gap:10px}
+.lv{font-weight:900;border-radius:8px;padding:0 8px;font-size:18px}
+.lvA{background:#E1F5EC;color:#11634C}.lvB{background:#FFF1DD;color:#8C4A12}.lvC{background:#FDE4E4;color:#8E2424}
+.qrbox{background:#fff;border-radius:20px;padding:12px;border:2px solid var(--line);display:inline-block}
+.qrbox svg{display:block;width:100%;height:100%}
+/* спикерлер */
+.spk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.spb{border:0;border-radius:22px;padding:18px 20px;text-align:left;font-family:inherit;cursor:pointer;color:#fff;box-shadow:0 10px 22px rgba(20,33,61,.15);transition:.2s}
+.spb:hover{transform:translateY(-3px)}
+.spb b{display:block;font-size:28px}
+.spb small{display:block;font-size:19px;opacity:.9;margin-top:4px}
+.spb.done{opacity:.55}
+#now{position:absolute;left:0;right:0;top:-4px;z-index:20;background:#14213D;color:#fff;border-radius:18px;padding:12px 22px;font-size:25px;font-weight:700;display:flex;align-items:center;gap:16px}
+#now .t60{margin-left:auto;font-size:38px;font-weight:900;font-variant-numeric:tabular-nums;background:#00A6A6;border-radius:12px;padding:0 14px}
+.info{display:grid;grid-template-columns:960px 1fr;gap:26px;margin-top:70px}
+.info ul{margin:0;padding:0;list-style:none}
+.info li{font-size:27px;line-height:1.35;padding:12px 0 12px 46px;position:relative;border-bottom:1px solid var(--line)}
+.info li:before{content:attr(data-n);position:absolute;left:0;top:12px;width:34px;height:34px;border-radius:50%;background:var(--gc,#6C4BD8);color:#fff;font-weight:900;font-size:19px;display:flex;align-items:center;justify-content:center}
+.sci{display:flex;gap:18px;align-items:center;margin-top:16px;background:#FFF8E6;border:2px solid #F3DFA2;border-radius:20px;padding:14px 18px}
+.sci .yr{font-size:34px;font-weight:900;color:#9A7A1A}
+.lab3d{position:absolute;inset:0;border-radius:26px;overflow:hidden;background:radial-gradient(circle at 50% 40%,#203058,#0B1022)}
+.lab3d canvas{display:block}
+.l3ui{position:absolute;left:20px;top:20px;display:flex;gap:10px;flex-wrap:wrap;z-index:3}
+.l3ui button{border:0;border-radius:14px;padding:12px 18px;font-size:21px;font-weight:800;font-family:inherit;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;backdrop-filter:blur(6px)}
+.l3ui button.on{background:#fff;color:#14213D}
+.l3z{position:absolute;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;z-index:3}
+.l3z button{width:62px;height:62px;border-radius:16px;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:32px;font-weight:900;cursor:pointer}
+.l3lab{position:absolute;z-index:2;color:#fff;font-size:20px;font-weight:700;background:rgba(14,20,38,.7);border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:4px 10px;white-space:nowrap;pointer-events:none;transform:translate(-50%,-50%)}
+.l3cap{position:absolute;left:20px;top:92px;right:110px;z-index:3;color:#fff;font-size:24px;background:rgba(14,20,38,.55);border-radius:16px;padding:14px 20px}
+.qopt{display:flex;gap:10px;align-items:center}
+.bar{height:16px;border-radius:9px;background:#E7EBF4;overflow:hidden;flex:1}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#6C4BD8,#00A6A6)}
+.flash{animation:fl 1s}
+@keyframes fl{0%{background:#FFF3C4}100%{background:#fff}}
+.anim .cellin{animation:cellIn .7s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}
+@keyframes cellIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.swim{animation:swim 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:left center}
+@keyframes swim{50%{transform:translateX(6px) rotate(2deg)}}
+.spinc{animation:spin 30s linear infinite;transform-origin:39px 39px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== БИО-ТЕМА: жарқын палитра ===== */
+:root{--ink:#10233F;--mut:#4F6480;--acc:#0F9D7A;--acc2:#E0398C;--em:#00B386;--tl:#00B4D8;--mg:#E0398C;--cb:#3B5BFF;--lm:#B6E31E;--cr:#FF7A59;--vi:#7A3CFF;--line:#DCEBEA}
+#stage{background:linear-gradient(135deg,#E9FFF6 0%,#E6F7FF 38%,#F6ECFF 70%,#FFEAF4 100%)}
+#stage:before{background-image:radial-gradient(circle at 22px 22px,rgba(0,179,134,.10) 5px,transparent 6px),radial-gradient(circle at 66px 58px,rgba(224,57,140,.08) 4px,transparent 5px);background-size:96px 84px}
+#bio{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#bio .blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;animation:drift 26s ease-in-out infinite}
+#bio .blob:after{content:"";position:absolute;left:32%;top:30%;width:30%;height:30%;border-radius:50%;background:rgba(255,255,255,.55)}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.06)}66%{transform:translate(-30px,25px) scale(.96)}}
+#bio .dna{position:absolute;right:-40px;top:120px;height:820px;opacity:.22;animation:dnaSpin 14s linear infinite}
+@keyframes dnaSpin{to{transform:translateY(-40px)}}
+header{background:rgba(255,255,255,.55);backdrop-filter:blur(10px);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#00B386,#00B4D8,#7A3CFF,#E0398C,#FF7A59) 1}
+.htitle b{background:linear-gradient(90deg,#0B6E58,#1F4FD8 55%,#B0206A);-webkit-background-clip:text;background-clip:text;color:transparent}
+#timer{border:3px solid #BDEFE0;background:#fff}
+.tb{background:linear-gradient(135deg,#E3FFF5,#E6F4FF)}
+#tplay{background:linear-gradient(135deg,#00B386,#00B4D8);color:#fff}
+h1.st .tx{background:linear-gradient(90deg,#08795F 0%,#1F4FD8 45%,#C2186E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:6px}
+h1.st .ic{margin-right:14px;display:inline-block;animation:bob 3s ease-in-out infinite}
+.method{background:linear-gradient(90deg,#EFFFD1,#D9FBF1 50%,#E3F1FF);border:2px solid #B9EBD6}
+.method em{color:#0B7A60}
+.card{border:0;box-shadow:0 14px 34px rgba(16,35,63,.08),inset 0 0 0 2px rgba(0,179,134,.10);position:relative;background:rgba(255,255,255,.92)}
+.card:before{content:"";position:absolute;left:24px;right:24px;top:0;height:5px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,#00B386,#00B4D8,#7A3CFF,#E0398C);opacity:.85}
+.btn{background:linear-gradient(135deg,#00B386,#00A3C4);box-shadow:0 8px 18px rgba(0,163,150,.28)}
+.btn.sec{background:#EAF8F3;box-shadow:none;color:var(--ink)}
+.btn.ok{background:linear-gradient(135deg,#7BC800,#00B386)}
+table.as th{background:linear-gradient(90deg,#0B5E58,#1A4FB8)}
+.strip .t{background:linear-gradient(90deg,#063D3A,#0B6E58)}
+.strip .s{background:linear-gradient(90deg,#C2186E,#FF7A59)}
+.nav button{background:linear-gradient(135deg,#0B6E58,#1A4FB8)}
+#dots{background:rgba(255,255,255,.85)}
+#dots i.on{background:linear-gradient(135deg,#00B386,#E0398C)}
+#dots i.ex{background:#B6E31E}
+.bar i{background:linear-gradient(90deg,#00B386,#00B4D8,#E0398C)}
+#banner{background:linear-gradient(90deg,#FF7A59,#E0398C)}
+#now{background:linear-gradient(90deg,#063D3A,#1A3E9E)}
+#now .t60{background:linear-gradient(135deg,#B6E31E,#00B386);color:#063D3A}
+.sci{background:linear-gradient(90deg,#FFF6D9,#FFEFF7);border-color:#F6D58A}
+.spb{position:relative;overflow:hidden}
+.spb:after{content:"";position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;border-radius:50%;background:rgba(255,255,255,.14);box-shadow:0 0 0 18px rgba(255,255,255,.07)}
+.lab3d{background:radial-gradient(circle at 50% 40%,#0E4A5C,#071C2B 70%)}
+.gbox{box-shadow:0 12px 26px rgba(16,35,63,.08)}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage">
+  <div id="bio">
+    <div class="blob" style="left:-80px;top:620px;width:300px;height:300px;background:radial-gradient(circle at 40% 35%,#C9FFE9,#00B386 75%);animation-delay:-4s"></div>
+    <div class="blob" style="left:1500px;top:-90px;width:260px;height:260px;background:radial-gradient(circle at 40% 35%,#FFE0EF,#E0398C 78%);animation-delay:-9s"></div>
+    <div class="blob" style="left:880px;top:900px;width:200px;height:200px;background:radial-gradient(circle at 40% 35%,#E2ECFF,#3B5BFF 80%);animation-delay:-2s"></div>
+    <div class="blob" style="left:1180px;top:520px;width:120px;height:120px;background:radial-gradient(circle at 40% 35%,#F4FFD0,#B6E31E 80%);animation-delay:-14s"></div>
+    <div class="blob" style="left:420px;top:-60px;width:150px;height:150px;background:radial-gradient(circle at 40% 35%,#DDF8FF,#00B4D8 80%);animation-delay:-6s"></div>
+    <svg class="dna" viewBox="0 0 120 900"><g id="dnaG"></g></svg>
+  </div>
+  <header>
+    <svg class="logo" viewBox="0 0 78 78" aria-hidden="true">
+      <defs><radialGradient id="lg" cx="40%" cy="35%"><stop offset="0" stop-color="#FFF7FB"/><stop offset="1" stop-color="#F3C6DD"/></radialGradient></defs>
+      <circle cx="39" cy="39" r="36" fill="url(#lg)" stroke="#C2457F" stroke-width="3"/>
+      <g class="spinc"><circle cx="39" cy="3" r="3" fill="#2F7FD8"/><path d="M39 3 q-6 -6 -12 0" stroke="#2F7FD8" stroke-width="2" fill="none"/><circle cx="75" cy="39" r="3" fill="#2F7FD8"/><circle cx="39" cy="75" r="3" fill="#2F7FD8"/></g>
+      <circle cx="39" cy="39" r="13" fill="#6C4BD8" opacity=".85"/>
+      <path d="M33 34l12 10M45 34l-12 10" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+    </svg>
+    <div class="htitle"><small id="hsub">Биология · 11-сынып · Ашық сабақ</small><b id="htop">Гаметогенез. Адам гаметогенезінің сатылары</b></div>
+    <span class="chip" id="conn" title="Байланыс">⏳ қосылуда</span>
+    <span class="chip" id="stn">1/13</span>
+    <div id="timer"><span id="tval">01:00</span>
+      <button class="tb" id="tplay" title="Бастау/тоқтату">▶</button><button class="tb" id="treset" title="Қайта">↺</button><button class="tb" id="tplus" title="+1 минут">+1</button><button class="tb" id="tbell" title="Қоңырау">🔔</button>
+    </div>
+  </header>
+  <div id="main"></div>
+  <div id="dots"></div>
+  <div class="nav"><button class="alt" id="bt" title="Мұғалім панелі (T)">⚙️</button><button id="bp" title="Алдыңғы">◀</button><button id="bn" title="Келесі">▶</button></div>
+  <div id="guide" class="hide">
+    <svg class="med" viewBox="0 0 150 150" id="gmed">
+      <defs><radialGradient id="gold" cx="35%" cy="30%"><stop offset="0" stop-color="#FFF2B8"/><stop offset=".6" stop-color="#E2B84B"/><stop offset="1" stop-color="#9E7618"/></radialGradient>
+        <clipPath id="gc"><circle cx="75" cy="75" r="60"/></clipPath></defs>
+      <circle cx="75" cy="75" r="72" fill="url(#gold)"/>
+      <circle cx="75" cy="75" r="62" fill="#F4ECDA" stroke="#8C6A14" stroke-width="2"/>
+      <g clip-path="url(#gc)">
+        <rect x="0" y="0" width="150" height="150" fill="#E8DCC0"/>
+        <path d="M18 150 Q24 104 75 100 Q126 104 132 150Z" fill="#2B2A33"/>
+        <path d="M60 104 Q75 126 90 104 L86 132 Q75 138 64 132Z" fill="#fff"/>
+        <path d="M66 112 q9 6 18 0 M64 120 q11 7 22 0" stroke="#D9D2C4" stroke-width="2" fill="none"/>
+        <!-- парик -->
+        <path d="M34 112 Q22 70 44 42 Q75 18 106 42 Q128 70 116 112 Q108 120 100 104 L100 64 Q75 54 50 64 L50 104 Q42 120 34 112Z" fill="#6B4A2E"/>
+        <g fill="#7E5838"><circle cx="38" cy="96" r="9"/><circle cx="35" cy="80" r="9"/><circle cx="39" cy="64" r="9"/><circle cx="112" cy="96" r="9"/><circle cx="115" cy="80" r="9"/><circle cx="111" cy="64" r="9"/></g>
+        <ellipse cx="75" cy="76" rx="25" ry="30" fill="#F2C9A5"/>
+        <path d="M50 62 Q75 40 100 62 Q90 50 75 50 Q60 50 50 62Z" fill="#6B4A2E"/>
+        <g class="eye"><ellipse cx="65" cy="74" rx="3.4" ry="3.8" fill="#2B2A33"/></g>
+        <g class="eye"><ellipse cx="85" cy="74" rx="3.4" ry="3.8" fill="#2B2A33"/></g>
+        <path d="M60 67 q5 -3 10 0 M80 67 q5 -3 10 0" stroke="#5A3D24" stroke-width="2" fill="none"/>
+        <path d="M75 76 q-3 8 0 10" stroke="#C99A7A" stroke-width="2" fill="none"/>
+        <path d="M68 91 q7 -3 14 0" stroke="#6B4A2E" stroke-width="2.5" fill="none"/>
+        <ellipse class="mouth" cx="75" cy="95" rx="5" ry="2.6" fill="#9C4A42"/>
+      </g>
+      <!-- линза (микроскоп) -->
+      <g transform="translate(112 112)"><rect x="-8" y="-20" width="16" height="34" rx="3" fill="#C9A24A" stroke="#8C6A14"/><circle cx="0" cy="-10" r="4" fill="#BFE6FF" stroke="#8C6A14"/></g>
+      <text x="75" y="146" font-size="10" text-anchor="middle" fill="#5B430C" font-weight="800">ЛЕВЕНГУК</text>
+    </svg>
+    <div class="bub"><b>🔬 ГИД · АНТОНИ ВАН ЛЕВЕНГУК</b><span id="gtext"></span></div>
+  </div>
+  <div id="banner">⏰ 1 минут қалды!</div>
+  <div id="count"><span id="cnum">10</span></div>
+  <div id="zoomlay"><div class="zin" id="zin"></div></div>
+  <div class="strip"><div class="t"><span class="lab">👩‍🏫<br>МҰҒАЛІМ</span><span id="sT"></span></div><div class="s"><span class="lab">🧑‍🎓<br>ОҚУШЫЛАР</span><span id="sS"></span></div></div>
+  <div id="tp"><div class="in" id="tpin"></div></div>
+</div></div>
+<script src="lesson-data.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="core.js"></script>
+<script src="viz.js"></script>
+<script>(function(){let h='';for(let i=0;i<46;i++){const y=i*20,a=Math.sin(i*.45)*44,c=i%2?'#E0398C':'#00B386';h+=`<line x1="${60-a}" y1="${y}" x2="${60+a}" y2="${y}" stroke="${i%3?'#7A3CFF':'#00B4D8'}" stroke-width="5" stroke-linecap="round" opacity=".7"/><circle cx="${60-a}" cy="${y}" r="8" fill="${c}"/><circle cx="${60+a}" cy="${y}" r="8" fill="${i%2?'#00B386':'#3B5BFF'}"/>`}document.getElementById('dnaG').innerHTML=h})();</script>
+<script src="app.js"></script>
+</body>
+</html>
