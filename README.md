@@ -7,3 +7,10 @@
 - `lesson-data.js` — сабақтың барлық мәтіні (бір дерек көзі).
 - `materialdar/` — ҚМЖ және жұмыс парақтары.
 - `database.rules.json` — Firebase Realtime Database ережесі (games/… бөлімі).
+
+## Материалдар (`materialdar.html`)
+1. ҚМЖ — Word/PDF (әр кезеңде сайт слайды, жұмыс парағы, дескриптор)
+2. Презентация — PowerPoint/PDF (19 слайд)
+3. Жұмыс парақтары №1–9 — Word/PDF
+4. Наклейкалар — PDF (`print/naklejka.html`)
+5. Постерлер A3 — PDF (`print/poster.html`)

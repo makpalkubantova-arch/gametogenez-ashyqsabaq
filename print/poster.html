@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="utf-8"><title>Постерлер · Гаметогенез</title>
+<link href="../vendor/golos.css" rel="stylesheet">
+<style>
+@page{size:A3;margin:0}
+*{box-sizing:border-box}body{margin:0;font-family:'Golos Text',Arial,sans-serif;color:#10233F;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#ccc}
+.pg{width:297mm;height:420mm;margin:0 auto 8mm;position:relative;overflow:hidden;page-break-after:always;background:linear-gradient(160deg,#F2FFF9,#F1F7FF 50%,#FFF3F9)}
+@media print{body{background:#fff}.pg{margin:0}}
+.anim .cellin,.swim{animation:none!important}
+.hdr{color:#fff;padding:14mm 16mm 10mm;position:relative}
+.hdr .k{font-size:13pt;font-weight:800;opacity:.9;letter-spacing:.3mm}
+.hdr h1{font-size:32pt;font-weight:900;margin:2mm 0 3mm;line-height:1.05;max-width:178mm}
+.hdr p{font-size:14pt;font-weight:600;margin:0;max-width:178mm;line-height:1.3}
+.hdr .ic{position:absolute;right:58mm;top:14mm;width:34mm;height:34mm;background:#fff;border-radius:50%;padding:4mm}
+.qr{position:absolute;right:14mm;top:12mm;width:40mm;background:#fff;border-radius:4mm;padding:2mm;text-align:center;font-size:7.5pt;font-weight:800;color:#173B9A}
+.qr svg{display:block;width:100%;height:36mm}
+.body{padding:8mm 14mm 0}
+.box{background:#fff;border-radius:6mm;padding:5mm 7mm;box-shadow:0 1mm 4mm rgba(16,35,63,.08);margin-bottom:6mm;position:relative}
+.box h2{font-size:15pt;font-weight:900;margin:0 0 3mm;display:flex;align-items:center;gap:3mm}
+.box h2 i{font-style:normal;width:9mm;height:9mm;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12pt}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;height:80mm}
+.steps div{border:0.6mm dashed #B8C4D6;border-radius:5mm;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:3mm;font-size:10pt;font-weight:800;color:#4F6480;text-align:center}
+.steps span.c{width:22mm;height:22mm;border-radius:50%;border:0.5mm dashed #C8D2E2}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.nums div{border-radius:5mm;padding:4mm;min-height:40mm;font-size:9pt;font-weight:700;color:#4F6480}
+.nums b{display:block;font-size:30pt;color:#C8D2E2;font-weight:900}
+.lines i{display:block;border-bottom:0.35mm solid #C8D2E2;height:9mm}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+.stick{border:0.7mm dashed #F2B705;border-radius:5mm;height:42mm;display:flex;align-items:center;justify-content:center;gap:6mm;color:#B58900;font-weight:800;font-size:12pt;background:#FFFBEA}
+.stick svg{width:14mm;height:14mm}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;font-size:9.5pt;font-weight:700}
+.roles span{border-bottom:0.35mm solid #C8D2E2;padding-bottom:5mm}
+.ft{position:absolute;left:14mm;right:14mm;bottom:7mm;font-size:8.5pt;color:#7A8BA6;display:flex;justify-content:space-between}
+/* инфографика */
+.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:12pt}
+.cmp th{color:#fff;padding:3mm 4mm;text-align:left}
+.cmp td{padding:3mm 4mm;border-bottom:0.3mm solid #E1E7F0;background:#fff}
+.tl{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm}
+.tl div{background:#fff;border-radius:4mm;padding:3mm;font-size:8.5pt;line-height:1.3;border-top:2mm solid}
+.tl b{display:block;font-size:16pt;font-weight:900}
+.big{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+.big div{border-radius:5mm;color:#fff;padding:4mm 5mm}
+.big b{display:block;font-size:30pt;font-weight:900;line-height:1}
+.big span{font-size:10pt;font-weight:700}
+</style></head><body>
+<div id="root"></div>
+<script src="../lesson-data.js"></script><script src="../vendor/qrcode.js"></script><script src="../core.js"></script><script src="../viz.js"></script><script src="icons.js"></script>
+<script>
+const LD = window.LD, IC = window.IC, G = LD.groups, GI = [IC.sperm, IC.egg, IC.chrom];
+const SITE = 'https://makpalkubantova-arch.github.io/gametogenez-ashyqsabaq/';
+const qr = `<div class="qr">${GT.qr(SITE, 160)}сабақ сайты</div>`;
+const steps = ['1. Көбею', '2. Өсу', '3. Мейоз I', '4. Мейоз II', '5. Қалыптасу'];
+let h = '';
+LD.posters.forEach((p, k) => {
+  const g = G[p.g];
+  h += `<div class="pg"><div class="hdr" style="background:linear-gradient(120deg,${g.c},${g.ink})"><div class="k">${g.short} · ${g.name} · РЕПРОДУКТИВТІ БИОЛОГТАР КОНСИЛИУМЫ</div><h1>${p.name}</h1><p>Зерттеу сұрағы: ${p.q}</p><div class="ic">${GI[k](g.c)}</div>${qr}</div>
+  <div class="body">
+   <div class="box"><h2><i style="background:${g.c}">1</i>Үдеріс сызбасы: 2n → n <span style="font-size:10pt;color:#4F6480;font-weight:600">(5.1-сурет, §27)</span></h2><div class="steps">${steps.map((s) => `<div><span>${s}</span><span class="c"></span><span style="font-weight:600">2n / n ?</span></div>`).join('')}</div></div>
+   <div class="box"><h2><i style="background:${g.c}">2</i>3 тексерілген сан</h2><div class="nums">${[1, 2, 3].map((n) => `<div style="background:${g.soft}"><b>${n}</b>Сан: ____________<br><br>Нені білдіреді: ____________________<br><br>Дереккөз: §27 / сайт</div>`).join('')}</div></div>
+   <div class="two"><div class="box"><h2><i style="background:${g.c}">3</i>Құрылыс ↔ қызмет</h2><div class="lines"><i></i><i></i><i></i><i></i></div></div>
+   <div class="box"><h2><i style="background:${g.c}">4</i>Биологиялық қорытынды</h2><div class="lines"><i></i><i></i><i></i><i></i></div></div></div>
+   <div class="box"><h2><i style="background:#F2B705">★</i>Галерея: «2 жұлдыз, 1 тілек» жапсыру орны</h2><div class="stick">${IC.star('#F2B705')}${IC.star('#FF9F1C')}${IC.bulb('#00B4D8')}<span>Наклейкаларды осында жапсырыңыз</span></div></div>
+   <div class="roles"><span>🎤 1-спикер:</span><span>🎤 2-спикер:</span><span>📒 Хатшы:</span><span>🖼️ Қорғаушы:</span></div>
+  </div><div class="ft"><span>${LD.lesson.subject} · ${LD.lesson.grade} · ${LD.lesson.topic}</span><span>K5: ${LD.tasks.find((t) => t.k === 'K5').d.map((d) => d.t.split(' ').slice(0, 3).join(' ') + '…').join(' · ')}</span></div></div>`;
+});
+/* сынып инфографикасы */
+const sci = LD.speakers.map((s) => s.sci).sort((a, b) => parseInt(a.yr) - parseInt(b.yr));
+const sc = ['#2563EB', '#E0398C', '#0FA968', '#7A3CFF', '#FF7A59', '#00B4D8'];
+h += `<div class="pg"><div class="hdr" style="background:linear-gradient(120deg,#063D3A,#1A3E9E 55%,#9A1558)"><div class="k">${LD.lesson.subject.toUpperCase()} · ${LD.lesson.grade.toUpperCase()} · СЫНЫП ПОСТЕРІ</div><h1>Гаметогенез: бір мейоз — екі стратегия</h1><p>Сперматогенез жылдамдыққа, оогенез қорға бейімделген. Екеуінің негізі — мейоз: 2n → n.</p>${qr}</div>
+<div class="body">
+ <div class="box" style="padding:3mm">${GV.lanes(4)}</div>
+ <div class="big">${[['4', '1 сперматоциттен сперматозоид', '#2563EB'], ['1', '1 ооциттен жұмыртқа жасушасы', '#E0398C'], ['23', 'хромосома гаметада', '#0FA968'], ['46', 'хромосома зиготада', '#7A3CFF']].map(([n, t, c]) => `<div style="background:${c}"><b>${n}</b><span>${t}</span></div>`).join('')}</div>
+ <div class="box" style="margin-top:6mm"><table class="cmp"><tr><th style="background:#0B5E58;border-radius:3mm 0 0 0">Белгі</th><th style="background:#2563EB">♂ Сперматогенез</th><th style="background:#E0398C;border-radius:0 3mm 0 0">♀ Оогенез</th></tr>
+ ${LD.pairRows.map((r, i) => `<tr><td><b>${r}</b></td><td>${LD.pairKey[i][0]}</td><td>${LD.pairKey[i][1]}</td></tr>`).join('')}</table></div>
+ <div class="tl">${sci.map((s, i) => `<div style="border-color:${sc[i]}"><b style="color:${sc[i]}">${s.yr}</b><strong>${s.name}</strong><br>${s.fact}</div>`).join('')}</div>
+</div><div class="ft"><span>${LD.lesson.teacher} · ${LD.lesson.school}</span><span>${SITE}</span></div></div>`;
+document.getElementById('root').innerHTML = h;
+</script></body></html>

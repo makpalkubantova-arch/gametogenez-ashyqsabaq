@@ -222,11 +222,13 @@
   function openTP(tab) { S.tpTab = tab || S.tpTab || 'list'; $('#tp').classList.add('on'); renderTP(); }
   function closeTP() { $('#tp').classList.remove('on'); if (location.hash === '#teacher') history.replaceState(null, '', '#board'); }
   $('#bt').onclick = () => openTP();
+  $('#bm').onclick = () => window.open('materialdar.html', '_blank');
   $('#tp').onclick = (e) => { if (e.target.id === 'tp') closeTP(); };
   function renderTP() {
     const tab = S.tpTab;
     const tabs = [['list', '👥 Тізім және топтар'], ['rating', '🏅 Рейтинг'], ['links', '🔗 Сілтемелер'], ['help', 'ℹ️ Нұсқау']];
-    let h = `<div style="display:flex;gap:10px;align-items:center;margin-bottom:16px"><h2 style="margin-right:auto">⚙️ Мұғалім панелі</h2>${tabs.map(([k, t]) => `<button class="btn ${k === tab ? '' : 'sec'} tpt" data-k="${k}">${t}</button>`).join('')}<button class="btn sec" id="tpx">✕</button></div>`;
+    const matBtn = `<a class="btn sec" href="materialdar.html" target="_blank" style="text-decoration:none">📁 Материалдар</a>`;
+    let h = `<div style="display:flex;gap:10px;align-items:center;margin-bottom:16px"><h2 style="margin-right:auto">⚙️ Мұғалім панелі</h2>${tabs.map(([k, t]) => `<button class="btn ${k === tab ? '' : 'sec'} tpt" data-k="${k}">${t}</button>`).join('')}${matBtn}<button class="btn sec" id="tpx">✕</button></div>`;
     if (tab === 'list') {
       const txt = S.roster.map((p) => p.name + ' - ' + p.l).join('\n');
       h += `<div style="display:grid;grid-template-columns:.8fr 1.2fr;gap:24px"><div><div class="mut" style="font-size:19px;margin-bottom:8px">Әр жолға: <b>Аты-жөні - A/B/C</b> (A — озат, B — екпінді, C — қанағат). Тізім тек осы құрылғыда және сабақ базасында сақталады, сайттың кодына жазылмайды.</div>
