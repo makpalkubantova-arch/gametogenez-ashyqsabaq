@@ -50,7 +50,10 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
   document.getElementById('st').textContent = 'Сабақ коды: ' + code + (db.demo ? ' · демо' : '');
   draw();
   db.on(P + '/meta', (v) => { meta = v || {}; draw(); });
-  db.on(P + '/sec/' + db.uid, (v) => { mine = v || {}; draw(); });
+  let alt = false, mineSec = {}, mineAlt = {};
+  const remix = () => { mine = Object.assign({}, mineAlt, mineSec); draw(); };
+  db.on(P + '/sec/' + db.uid, (v) => { mineSec = v || {}; remix(); });
+  db.on(P + '/guests/' + db.uid, (v) => { mineAlt = (v && v.items) || {}; if (v && v.items) alt = true; remix(); });
   function members() {
     const r = GT.arr(meta.roster).map((p, i) => ({ key: 'r' + i, name: p.name, g: p.g, role: p.role })).filter((p) => p.g === g);
     return r.concat(extra.filter((p) => p.g === g));
@@ -79,6 +82,7 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
     app.querySelectorAll('[data-all]').forEach((b) => b.onclick = () => save(members().map((p) => p.key), b.dataset.all, +b.dataset.v));
     document.getElementById('add').onclick = () => { const n = document.getElementById('addn').value.trim(); if (n.length < 2) return; extra.push({ key: 'x' + Date.now().toString(36), name: n, g }); localStorage.setItem('gt_h_x_' + code, JSON.stringify(extra)); draw(); };
   }
+  function flash(t) { let f = document.getElementById('fl'); if (!f) { f = document.createElement('div'); f.id = 'fl'; f.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0FA968;color:#fff;font-weight:800;padding:10px 18px;border-radius:14px;z-index:9;transition:opacity .4s'; document.body.appendChild(f); } f.textContent = t; f.style.opacity = 1; clearTimeout(f._t); f._t = setTimeout(() => f.style.opacity = 0, 900); }
   async function save(keys, dk, v) {
     const ms = members(); const upd = {};
     keys.forEach((k) => {
@@ -87,8 +91,11 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
       const total = Object.values(sc).reduce((a, b) => a + (+b || 0), 0);
       upd[k] = { name: p.name, g, sc, total, src: 'hatshy' };
     });
-    try { await db.update(P + '/sec/' + db.uid, upd); if (navigator.vibrate) navigator.vibrate(15); }
-    catch (e) { alert('Сақталмады: ' + (e.code || e.message) + '\nМұғалімге айтыңыз: Firebase Rules-та «sec» бөлімі болуы керек.'); }
+    const ok = () => { if (navigator.vibrate) navigator.vibrate(15); flash('✓ сақталды'); };
+    if (!alt) { try { await db.update(P + '/sec/' + db.uid, upd); return ok(); } catch (e) { alt = true; } }
+    /* қосалқы жол: Rules-та sec жоқ болса — guests арқылы сақтаймыз */
+    try { const items = Object.assign({}, mine, upd); await db.set(P + '/guests/' + db.uid, { kind: 'sec', g, items }); mineAlt = items; ok(); }
+    catch (e) { alert('Сақталмады: ' + (e.code || e.message) + '\nИнтернетті тексеріңіз немесе ұпайды қағаз хатшы парағына жазыңыз.'); }
   }
 })();
 </script>

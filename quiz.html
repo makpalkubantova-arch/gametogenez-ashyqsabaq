@@ -50,14 +50,17 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
     if (busy) return;
     const meta = game.meta || {};
     const mine0 = me ? myAns() : []; const nx = mine0.findIndex((a) => !a);
-    const key = !meta.host ? 'none' : !me ? 'join' + JSON.stringify(GT.arr(meta.roster)) : nx === -1 ? 'fin' : !meta.quiz ? 'wait' : 'q' + nx;
+    const key = !meta.host ? 'none' : !me ? 'join' + JSON.stringify(GT.arr(meta.roster)) : nx === -1 ? 'fin' : !meta.quiz ? 'wait' + JSON.stringify(meta.roster || []) : 'q' + nx;
     if (key === lastKey) return; lastKey = key;
     if (!meta.host) { app.innerHTML = '<div class="card">Сабақ табылмады. Тақтадағы QR-ды қайта сканерлеңіз.</div>'; return; }
     if (!me) return join(meta);
     document.getElementById('who').textContent = me.name + ' · ' + (LD.groups[me.g] ? LD.groups[me.g].short : '');
     const mine = myAns(); const next = mine.findIndex((a) => !a);
     if (next === -1) return finish(mine);
-    if (!meta.quiz) { app.innerHTML = `<div class="card"><h1>Сәлем, ${esc(me.name)}!</h1><p class="mut">Мұғалім квизді ашқанда сұрақтар осында шығады. Телефонды жаппаңыз 🙂</p><div class="big">⏳</div></div>`; return; }
+    if (!meta.quiz) {
+      const G = LD.groups[me.g] || LD.groups[0]; const rp = GT.arr(meta.roster).find((p) => GT.nrm(p.name) === GT.nrm(me.name)); const rl = rp && rp.role ? LD.roles.find((r) => r.key === rp.role) : null;
+      app.innerHTML = `<div class="card" style="text-align:center;background:${G.c};color:#fff"><div style="font-size:15px;font-weight:800;opacity:.9">СЕНІҢ ЗЕРТХАНАҢ</div><div style="font-size:64px">${G.icon}</div><div style="font-size:28px;font-weight:900">${esc(G.short)}</div><div style="font-size:22px;font-weight:800">${esc(G.name)}</div>${rl ? `<div style="margin-top:12px;background:#fff;color:${G.ink};border-radius:16px;padding:12px;font-size:22px;font-weight:900">${rl.icon} Рөлің: ${rl.name}</div>` : ''}</div>
+        <div class="card" style="text-align:center"><div class="big">📵</div><h2>Телефонды шетке қой</h2><p class="mut">Квиз бен кері байланыс кезінде мұғалім айтқанда қайта аш — сұрақтар осы бетте өзі шығады.</p></div>`; return; }
     ask(next);
   }
   function join(meta) {

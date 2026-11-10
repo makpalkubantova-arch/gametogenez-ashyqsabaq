@@ -64,7 +64,7 @@
   };
 
   /* Рейтинг: хатшы + квиз есім бойынша бірігеді, әр кілттің max-ы */
-  C.rating = function (game, roster) {
+  C.rating = function (game, roster, manual) {
     const LD = window.LD; game = game || {};
     const rows = new Map();
     const get = (name, g) => {
@@ -73,7 +73,9 @@
       const r = rows.get(key); if (r.g == null && g != null) r.g = g; return r;
     };
     (roster || []).forEach((p) => get(p.name, p.g));
-    const sec = game.sec || {};
+    const sec = Object.assign({}, game.sec || {});
+    const gs = game.guests || {}; Object.keys(gs).forEach((u) => { if (gs[u] && gs[u].kind === 'sec' && gs[u].items) sec['g_' + u] = gs[u].items; });
+    if (manual) sec.__manual = manual;
     Object.keys(sec).forEach((dev) => { const part = sec[dev] || {}; Object.keys(part).forEach((k) => {
       const e = part[k]; if (!e || !e.name) return; const r = get(e.name, e.g);
       Object.keys(e.sc || {}).forEach((dk) => { r.sc[dk] = Math.max(r.sc[dk] || 0, Number(e.sc[dk]) || 0); });
