@@ -55,8 +55,8 @@ LD.posters.forEach((p, k) => {
   const g = G[p.g];
   h += `<div class="pg"><div class="hdr" style="background:linear-gradient(120deg,${g.c},${g.ink})"><div class="k">${g.short} · ${g.name} · РЕПРОДУКТИВТІ БИОЛОГТАР КОНСИЛИУМЫ</div><h1>${p.name}</h1><p>Зерттеу сұрағы: ${p.q}</p><div class="ic">${GI[k](g.c)}</div>${qr}</div>
   <div class="body">
-   <div class="box"><h2><i style="background:${g.c}">1</i>Үдеріс сызбасы: 2n → n <span style="font-size:10pt;color:#4F6480;font-weight:600">(5.1-сурет, §27)</span></h2><div class="steps">${steps.map((s) => `<div><span>${s}</span><span class="c"></span><span style="font-weight:600">2n / n ?</span></div>`).join('')}</div></div>
-   <div class="box"><h2><i style="background:${g.c}">2</i>3 тексерілген сан</h2><div class="nums">${[1, 2, 3].map((n) => `<div style="background:${g.soft}"><b>${n}</b>Сан: ____________<br><br>Нені білдіреді: ____________________<br><br>Дереккөз: §27 / сайт</div>`).join('')}</div></div>
+   <div class="box"><h2><i style="background:${g.c}">1</i>Үдеріс сызбасы: 2n → n <span style="font-size:10pt;color:#4F6480;font-weight:600">(5.1-сурет)</span></h2><div class="steps">${steps.map((s) => `<div><span>${s}</span><span class="c"></span><span style="font-weight:600">2n / n ?</span></div>`).join('')}</div></div>
+   <div class="box"><h2><i style="background:${g.c}">2</i>3 тексерілген сан</h2><div class="nums">${[1, 2, 3].map((n) => `<div style="background:${g.soft}"><b>${n}</b>Сан: ____________<br><br>Нені білдіреді: ____________________<br><br>Дереккөз: оқулық / сайт</div>`).join('')}</div></div>
    <div class="two"><div class="box"><h2><i style="background:${g.c}">3</i>Құрылыс ↔ қызмет</h2><div class="lines"><i></i><i></i><i></i><i></i></div></div>
    <div class="box"><h2><i style="background:${g.c}">4</i>Биологиялық қорытынды</h2><div class="lines"><i></i><i></i><i></i><i></i></div></div></div>
    <div class="box"><h2><i style="background:#F2B705">★</i>Галерея: «2 жұлдыз, 1 тілек» жапсыру орны</h2><div class="stick">${IC.star('#F2B705')}${IC.star('#FF9F1C')}${IC.bulb('#00B4D8')}<span>Наклейкаларды осында жапсырыңыз</span></div></div>
