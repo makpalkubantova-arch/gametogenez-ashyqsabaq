@@ -44,7 +44,7 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
   const LD = window.LD, GT = window.GT, esc = GT.esc, app = document.getElementById('app');
   const code = GT.code(); if (!code) { app.innerHTML = '<div class="card">Тақтадағы хатшы QR-ын сканерлеңіз.</div>'; return; }
   const db = await GT.backend(); const P = 'games/' + code;
-  const TASKS = LD.tasks.filter((t) => t.k !== 'K7');
+  const TASKS = LD.tasks.filter((t) => !['K4','K7'].includes(t.k));
   let meta = {}, mine = {}, g = +(localStorage.getItem('gt_h_g_' + code) || -1), tk = TASKS[0].k, extra = [];
   try { extra = JSON.parse(localStorage.getItem('gt_h_x_' + code) || '[]'); } catch (e) {}
   document.getElementById('st').textContent = 'Сабақ коды: ' + code + (db.demo ? ' · демо' : '');
@@ -54,29 +54,46 @@ h1{background:linear-gradient(90deg,#08795F,#1F4FD8 55%,#C2186E);-webkit-backgro
   const remix = () => { mine = Object.assign({}, mineAlt, mineSec); draw(); };
   db.on(P + '/sec/' + db.uid, (v) => { mineSec = v || {}; remix(); });
   db.on(P + '/guests/' + db.uid, (v) => { mineAlt = (v && v.items) || {}; if (v && v.items) alt = true; remix(); });
+  /* хатшыға жауап кілті — тапсырманы өзі орындағаннан кейін ғана ашылады */
+  function KEYOF(k, g) {
+    if (k === 'K1') return LD.hot.map((x, i) => `${i + 1}) ${esc(x.a)}`).join(' · ') + ' · Ғылыми терминмен дұрыс жауап — 1';
+    if (k === 'K2') return LD.speakers.map((x) => `${esc(x.title)} — ${esc(x.sci.name)} (${x.sci.yr})`).join(' · ') + ' · Ұғым кластерде — 1, ғалым ↔ саты байланысы — 1';
+    if (k === 'K3') return LD.detective.map((x, i) => `${i + 1}) ${x.ok ? '✓ дұрыс' : '✗ бұрыс → ' + esc(x.fix)}`).join(' · ') + ' · Белгілері дұрыс — 1, қатесі түзетілсе — 1';
+    if (k === 'K5') { const P = LD.posters[g] || {}; return `Сұрақ: ${esc(P.q || '')} · Сандар: ${(P.nums || []).map(esc).join('; ')} · Қадамдар: ${LD.posterSteps.map(esc).join(' → ')}`; }
+    if (k === 'K6') return '1) Қозғалғыштық төмен → жұмыртқа жасушасына жете алмайды, ұрықтану мүмкіндігі азаяды · 2) Құйрық (талшық) және мойындағы митохондриялар (энергия) · 3) Мейоз аяқталмаса, гаметада n хромосома болмайды, зигота дұрыс түзілмейді · 4) Тек жетілген гамета ұрықтана алады · 5) Саны көп болса да, жетілмеген/қозғалмайтын гамета ұрықтанбайды — сапасы маңызды';
+    return '';
+  }
+
+  const KO = () => { try { return JSON.parse(localStorage.getItem('gt_h_k_' + code) || '{}'); } catch (e) { return {}; } };
   function members() {
     const r = GT.arr(meta.roster).map((p, i) => ({ key: 'r' + i, name: p.name, g: p.g, role: p.role })).filter((p) => p.g === g);
     return r.concat(extra.filter((p) => p.g === g));
   }
   function draw() {
     if (g < 0) {
-      app.innerHTML = `<div class="card"><b>Қай топтың хатшысысыз?</b>${LD.groups.map((x, i) => `<button class="gb" data-g="${i}" style="background:${x.c}">${x.icon} ${x.short} · ${esc(x.name)}</button>`).join('')}</div>`;
-      app.querySelectorAll('[data-g]').forEach((b) => b.onclick = () => { g = +b.dataset.g; localStorage.setItem('gt_h_g_' + code, g); draw(); }); return;
+      app.innerHTML = `<div class="card"><b>Қай топтың хатшысысыз?</b><div class="mut" style="margin:4px 0 8px">Тек өз тобыңды таңда — кейін ауыстырылмайды.</div>${LD.groups.map((x, i) => `<button class="gb" data-g="${i}" style="background:${x.c}">${x.icon} ${x.short} · ${esc(x.name)}</button>`).join('')}</div>`;
+      app.querySelectorAll('[data-g]').forEach((b) => b.onclick = () => { if (!confirm(LD.groups[+b.dataset.g].name + ' — сенің тобың ба? Кейін ауыстырылмайды.')) return; g = +b.dataset.g; localStorage.setItem('gt_h_g_' + code, g); draw(); }); return;
     }
     const G = LD.groups[g], ms = members(), t = TASKS.find((x) => x.k === tk);
-    let h = `<div class="card" style="border-top:6px solid ${G.c}"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:${G.ink}">${G.icon} ${esc(G.name)}</b><button class="btn" style="background:#EEF1F8;color:#14213D;margin:0" id="chg">Топты ауыстыру</button></div>
+    let h = `<div class="card" style="border-top:6px solid ${G.c}"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:${G.ink}">${G.icon} ${esc(G.name)}</b><span class="mut" style="font-size:13px">📒 тек өз тобың</span></div>
       <div class="tabs" style="margin-top:10px">${TASKS.map((x) => `<button data-k="${x.k}" class="${x.k === tk ? 'on' : ''}">${x.k}</button>`).join('')}</div>
       <div style="margin-top:8px;font-weight:800">${t.k} · ${esc(t.kind)}: ${esc(t.title)}</div>`;
+    const kOpen = !!KO()[t.k], KT = KEYOF(t.k, g);
+    h += kOpen ? `<div class="card" style="background:#FFF6D6;margin:10px 0;padding:12px">🔑 <b>Жауап кілті:</b> ${KT}</div>`
+      : `<div class="card" style="background:#FFF6D6;margin:10px 0;padding:12px;text-align:center"><b>🔒 Жауап кілті жабық</b><div class="mut" style="margin:6px 0 10px">Алдымен тапсырманы өзің жұмыс парағында орында, сосын кілтті ашып, топты тексер.</div><button class="btn" id="kopen" style="margin:0">✅ Мен өзім орындадым — кілтті аш</button></div>`;
+    h += `<div style="${kOpen ? '' : 'opacity:.35;pointer-events:none'}">`;
     if (!ms.length) h += `<p class="mut">Мұғалім тізімді әлі енгізбеген. Топ мүшелерін өзіңіз қоса аласыз:</p>`;
     t.d.forEach((d, di) => {
       const dk = t.k + '_' + di;
       h += `<div class="d">${di + 1}) ${esc(d.t)} — ${d.p} б.</div><div class="row all"><span class="n">👥 Бүкіл топқа</span><div class="pts">${[...Array(d.p + 1)].map((_, v) => `<button data-all="${dk}" data-v="${v}">${v}</button>`).join('')}</div></div>`;
       ms.forEach((p) => { const cur = ((mine[p.key] || {}).sc || {})[dk]; h += `<div class="row"><span class="n">${esc(p.name)}${p.role === 'hat' ? ' 📒' : p.role === 'sp1' || p.role === 'sp2' ? ' 🎤' : p.role === 'pos' ? ' 🖼️' : ''}</span><div class="pts">${[...Array(d.p + 1)].map((_, v) => `<button data-p="${p.key}" data-dk="${dk}" data-v="${v}" class="${cur === v ? 'on' : ''}">${v}</button>`).join('')}</div></div>`; });
     });
+    h += `</div>`;
     h += `<div style="display:flex;gap:8px"><input id="addn" placeholder="+ Оқушы қосу (тізімде жоқ болса)"><button class="btn" id="add">Қосу</button></div></div>`;
-    h += `<div class="sum">${ms.map((p) => `${esc(p.name.split(' ')[0])}: <b>${(mine[p.key] || {}).total || 0}</b>`).join(' · ') || 'Ұпай әлі жоқ'} <span style="opacity:.7">(K1–K6 · квиз K7 өзі қосылады)</span></div>`;
+    h += `<div class="sum">${ms.map((p) => `${esc(p.name.split(' ')[0])}: <b>${(mine[p.key] || {}).total || 0}</b>`).join(' · ') || 'Ұпай әлі жоқ'} <span style="opacity:.7">(K4 тақтадан, K7 квизден өзі қосылады)</span></div>`;
     app.innerHTML = h;
-    document.getElementById('chg').onclick = () => { g = -1; localStorage.removeItem('gt_h_g_' + code); draw(); };
+    
+    const ko = document.getElementById('kopen'); if (ko) ko.onclick = () => { if (!confirm('Тапсырманы өзің орындап болдың ба?')) return; const o = KO(); o[t.k] = 1; localStorage.setItem('gt_h_k_' + code, JSON.stringify(o)); draw(); };
     app.querySelectorAll('.tabs [data-k]').forEach((b) => b.onclick = () => { tk = b.dataset.k; draw(); });
     app.querySelectorAll('[data-p]').forEach((b) => b.onclick = () => save([b.dataset.p], b.dataset.dk, +b.dataset.v));
     app.querySelectorAll('[data-all]').forEach((b) => b.onclick = () => save(members().map((p) => p.key), b.dataset.all, +b.dataset.v));
