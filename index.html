@@ -3,176 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>§27. Сперматогенез бен оогенездің айырмашылықтары — сабақ</title>
+<title>§27. Сперматогенез бен оогенездің айырмашылықтары</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f6fa;--card:#fff;--ink:#0d1424;--ink2:#344057;--muted:#667085;--line:#e3e7ef;
---sp:#2f7ff0;--sp-s:#e8f1fe;--oo:#e09a1c;--oo-s:#fdf3df;--ac:#4f46e5;--ac-s:#eef0ff;--ok:#16a34a;--ok-s:#e7f7ee;--bad:#dc2626;--bad-s:#fdecec;
---b1:#0ea5e9;--b2:#8b5cf6;--b3:#f59e0b}
+:root{--ink:#1b1240;--ink2:#40386a;--muted:#6f6893;--line:#ebe6fa;--bg:#f6f3ff;
+--vi:#6d4aff;--vi2:#9b7bff;--sp:#2f7ff0;--sp-s:#e6f0ff;--oo:#f0a42a;--oo-s:#fff3dd;--ro:#ec4899;--te:#14b8a6;
+--ok:#16a34a;--ok-s:#e6f7ec;--bad:#e11d48;--bad-s:#ffe8ee;--r:22px;--sh:0 12px 32px rgba(60,30,140,.08)}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:18px;line-height:1.5;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
-button{font:inherit;cursor:pointer}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:18px;line-height:1.5;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;cursor:pointer;color:inherit}
+/* living background */
+.bgcells{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(900px 600px at 0% 0%,#e7e0ff 0%,transparent 60%),radial-gradient(800px 600px at 100% 100%,#ffeccc 0%,transparent 55%),radial-gradient(700px 500px at 100% 0%,#dcecff 0%,transparent 55%),var(--bg)}
+.bgcells i{position:absolute;border-radius:50%;opacity:.55;animation:float 26s ease-in-out infinite}
+.bgcells i::after{content:"";position:absolute;inset:34%;border-radius:50%;background:inherit;filter:brightness(.85)}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
 /* top */
-.top{background:var(--ink);color:#fff;display:flex;align-items:center;gap:16px;padding:0 18px;height:58px;flex:0 0 auto}
-.top .ttl{font-weight:700;font-size:15px;white-space:nowrap;display:flex;align-items:center;gap:10px}
-.top .ttl i{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--sp),var(--oo))}
+.top{position:relative;z-index:2;flex:0 0 auto;height:64px;display:flex;align-items:center;gap:14px;padding:0 18px;background:linear-gradient(100deg,#1b1240,#3b237f 55%,#5b3bd6);color:#fff;box-shadow:0 6px 20px rgba(27,18,64,.25)}
+.logo{display:flex;align-items:center;gap:10px;font-family:Montserrat;font-weight:800;font-size:16px;white-space:nowrap}
+.logo svg{width:34px;height:34px}
 .stages{display:flex;gap:6px;flex:1;overflow-x:auto;scrollbar-width:none}
 .stages::-webkit-scrollbar{display:none}
-.stg{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:10px;background:rgba(255,255,255,.06);white-space:nowrap}
-.stg b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#aab4c8;margin-right:2px}
-.stg.on b{color:#fff}
-.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.22);border:none;padding:0}
-.dot.on{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
-.dot.done{background:#7c8aa5}
-.tbtn{background:rgba(255,255,255,.1);color:#fff;border:none;border-radius:9px;padding:7px 12px;font-size:14px;font-weight:600;white-space:nowrap}
-.tbtn:hover{background:rgba(255,255,255,.18)}
+.stg{display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:12px;background:rgba(255,255,255,.08);white-space:nowrap}
+.stg b{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#c9bfff;margin-right:2px}
+.stg.on{background:rgba(255,255,255,.16)}.stg.on b{color:#fff}
+.dot{width:13px;height:13px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.25)}
+.dot.done{background:#a796ff}.dot.on{background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.28)}
+.tbtn{background:rgba(255,255,255,.12);border:none;color:#fff;border-radius:11px;padding:8px 13px;font-size:14px;font-weight:700;white-space:nowrap}
+.tbtn:hover{background:rgba(255,255,255,.22)}
+.tbtn.on{background:#fff;color:var(--ink)}
 /* main */
-main{flex:1;overflow:auto;padding:24px 28px}
-.screen{max-width:1400px;margin:0 auto;animation:in .35s ease}
-@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-.hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap}
-.kicker{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.pill{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:7px;background:var(--ac-s);color:var(--ac)}
-.pill.s1{background:#e0f2fe;color:#0369a1}.pill.s2{background:#ede9fe;color:#6d28d9}.pill.s3{background:#fef3c7;color:#b45309}
-.pill.min{background:#fff;border:1px solid var(--line);color:var(--ink2)}
-h1{font-size:36px;line-height:1.15;margin:8px 0 0;letter-spacing:-.02em}
-h2{font-size:22px;margin:0 0 10px}
+main{position:relative;z-index:1;flex:1;overflow:auto;padding:22px 26px 26px}
+.screen{max-width:1400px;margin:0 auto;animation:in .4s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+.hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.kick{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{font-size:13px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:#efeaff;color:var(--vi)}
+.pill.s1{background:#d9f7f2;color:#0f766e}.pill.s2{background:#ece6ff;color:#5b3bd6}.pill.s3{background:#ffefd2;color:#b45309}
+.pill.w{background:#fff;color:var(--ink2);border:1px solid var(--line)}
+h1{font-family:Montserrat;font-size:38px;line-height:1.12;margin:10px 0 0;letter-spacing:-.01em;background:linear-gradient(90deg,#1b1240,#5b3bd6);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-family:Montserrat;font-size:22px;margin:0 0 8px}
 h3{font-size:18px;margin:0 0 6px}
-.lead{color:var(--muted);margin:6px 0 0;max-width:760px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
-.side{display:flex;flex-direction:column;gap:14px;position:sticky;top:0}
 .muted{color:var(--muted)}
-.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:11px;padding:10px 16px;font-weight:600;font-size:16px}
-.btn:hover{border-color:#c5cbd8}
-.btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn.sm{font-size:14px;padding:7px 12px}
+.card{background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+.side{display:flex;flex-direction:column;gap:14px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 18px;font-weight:700;font-size:16px;box-shadow:0 2px 6px rgba(60,30,140,.05);text-decoration:none;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.btn:hover{border-color:#cfc5f5}
+.btn.pr{background:linear-gradient(90deg,#5b3bd6,#8a63ff);color:#fff;border:none}
+.btn.sm{font-size:14px;padding:8px 13px;border-radius:11px}
+/* teacher strip */
+.teach{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(90deg,#fff7e6,#fffaf0);border:1px solid #fde3b0;border-radius:18px;padding:12px 16px;margin-bottom:16px}
+.teach .ic{flex:0 0 38px;height:38px;border-radius:12px;background:#f0a42a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px}
+.teach b{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:#b45309}
+.teach ol{margin:2px 0 0;padding-left:20px;font-size:16px;color:#5b4320}
+.teach ol li{margin:1px 0}
+body.noteach .teach{display:none}
 /* timer */
-.timer{text-align:center;background:var(--ink);color:#fff;border:none}
-.timer .lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#9fb0cc;font-weight:700}
-.timer .ws{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;background:rgba(255,255,255,.1);padding:4px 10px;border-radius:8px}
-.clock{font-size:76px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1.05;margin:10px 0 6px}
-.bar{height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;margin:4px 0 14px}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,#34d399,#60a5fa);transition:width .3s linear}
-.timer.warn .clock{color:#fbbf24}.timer.end .clock{color:#f87171;animation:blink 1s infinite}
+.timer{background:linear-gradient(150deg,#1b1240,#3b237f);color:#fff;border:none;text-align:center}
+.timer .lbl{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#c9bfff;font-weight:800}
+.timer .ws{display:inline-block;margin-top:6px;font-size:13.5px;font-weight:700;background:rgba(255,255,255,.12);padding:5px 11px;border-radius:9px}
+.ring{position:relative;width:190px;height:190px;margin:12px auto 10px}
+.ring svg{transform:rotate(-90deg)}
+.ring .clk{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.timer.warn .clk{color:#fcd34d}.timer.end .clk{color:#fb7185;animation:blink 1s infinite}
 @keyframes blink{50%{opacity:.35}}
 .timer .ctl{display:flex;gap:8px;justify-content:center}
-.timer .ctl button{border:none;border-radius:10px;padding:10px 16px;font-weight:700;font-size:15px;background:rgba(255,255,255,.12);color:#fff}
+.timer .ctl button{border:none;border-radius:12px;padding:10px 15px;font-weight:800;font-size:15px;background:rgba(255,255,255,.14);color:#fff}
 .timer .ctl button.go{background:#fff;color:var(--ink)}
-.who{display:flex;gap:12px;align-items:flex-start}
-.who .ic{font-size:26px;line-height:1}
-.who b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.who{display:flex;gap:12px}
+.who .ic{flex:0 0 44px;height:44px;border-radius:14px;background:#efeaff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.who small{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:800}
 .desc ul{margin:6px 0 0;padding:0;list-style:none}
-.desc li{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:16px;cursor:pointer;user-select:none}
+.desc li{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:15.5px;cursor:pointer;user-select:none}
 .desc li:last-child{border-bottom:none}
-.desc li .cb{flex:0 0 20px;height:20px;border:2px solid #b8c0d0;border-radius:6px;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff}
+.desc .cb{flex:0 0 22px;height:22px;border:2px solid #c9c1e6;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;margin-top:1px}
 .desc li.on .cb{background:var(--ok);border-color:var(--ok)}
-.desc li .pt{margin-left:auto;font-weight:700;color:var(--muted);white-space:nowrap}
+.desc .pt{margin-left:auto;font-weight:800;color:var(--vi);white-space:nowrap}
 /* reveal */
-.rv{display:none;margin-top:10px;padding:12px 14px;border-radius:12px;background:var(--ok-s);color:#14532d;font-size:16.5px}
+.rv{display:none;margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--ok-s);color:#14532d;font-size:16.5px}
 .open .rv{display:block}
-.qc{display:flex;flex-direction:column}
-.qc .n{font-size:30px;font-weight:800;color:#cfd5e2;line-height:1}
-.qc p{font-weight:600;margin:10px 0 12px;flex:1;font-size:19px}
-/* table */
-table.t{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;font-size:17px}
+/* tables */
+table.t{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;font-size:17px;box-shadow:var(--sh)}
 table.t th,table.t td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 table.t tr:last-child td{border-bottom:none}
-table.t thead th{background:var(--ink);color:#fff;font-weight:600}
-table.t td.h{cursor:pointer;color:transparent;background:repeating-linear-gradient(135deg,#f3f5f9,#f3f5f9 8px,#eceff5 8px,#eceff5 16px);position:relative;user-select:none}
-table.t td.h::after{content:"басу";position:absolute;left:14px;top:12px;color:#9aa3b5;font-size:14px}
-table.t td.h.s{color:inherit;background:#fff}table.t td.h.s::after{content:""}
-table.t td.sp{background:#f7faff}table.t td.oo{background:#fffaf0}
+table.t thead th{background:linear-gradient(90deg,#1b1240,#3b237f);color:#fff;font-weight:700}
+td.h{cursor:pointer;color:transparent!important;background:repeating-linear-gradient(135deg,#f6f3ff,#f6f3ff 9px,#efeaff 9px,#efeaff 18px)!important;position:relative;user-select:none}
+td.h::after{content:"👆 ашу";position:absolute;left:14px;top:12px;color:#9a90c4;font-size:14px}
+td.h.s{color:inherit!important;background:#fff!important;animation:in .3s}td.h.s::after{content:""}
+/* qcards */
+.qc{position:relative;overflow:hidden}
+.qc .n{position:absolute;right:16px;top:8px;font-family:Montserrat;font-size:54px;font-weight:900;color:#efeaff}
+.qc p{position:relative;font-weight:700;font-size:19.5px;margin:0 0 14px}
 /* tf */
-.tf{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.tf{display:grid;grid-template-columns:42px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
 .tf:last-child{border-bottom:none}
-.tf .i{width:34px;height:34px;border-radius:9px;background:#eef1f6;font-weight:800;display:flex;align-items:center;justify-content:center}
+.tf .i{width:36px;height:36px;border-radius:11px;background:#efeaff;color:var(--vi);font-weight:800;display:flex;align-items:center;justify-content:center}
 .tf .a{display:flex;gap:6px}
-.tf .fx{grid-column:2/4;display:none;padding:10px 12px;border-radius:10px;font-size:16.5px}
+.tf .fx{grid-column:2/4;display:none;padding:10px 12px;border-radius:12px;font-size:16.5px}
 .tf.d .fx{display:block}.tf.ok .i{background:var(--ok);color:#fff}.tf.no .i{background:var(--bad);color:#fff}
-.tf.ok .fx{background:var(--ok-s);color:#14532d}.tf.no .fx{background:var(--bad-s);color:#7f1d1d}
-/* groups */
-.grp{border-top:5px solid var(--g)}
-.grp .gl{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g)}
-.grp .rq{background:var(--bg);border-radius:10px;padding:10px 12px;margin:10px 0;font-size:16.5px}
+.tf.ok .fx{background:var(--ok-s);color:#14532d}.tf.no .fx{background:var(--bad-s);color:#881337}
+/* board: drag & drop */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font-weight:700;font-size:15.5px}
+.tabs button.on{background:linear-gradient(90deg,#5b3bd6,#8a63ff);color:#fff;border-color:transparent}
+.pool{display:flex;flex-wrap:wrap;gap:10px;min-height:66px;padding:14px;border-radius:18px;background:rgba(255,255,255,.7);border:2px dashed #d7cff3;margin-bottom:14px}
+.chipc{background:#fff;border:2px solid #e3dcfa;border-radius:14px;padding:10px 14px;font-weight:600;font-size:16.5px;box-shadow:0 4px 10px rgba(60,30,140,.08);cursor:grab;user-select:none;touch-action:none;transition:transform .15s}
+.chipc.sel{border-color:var(--vi);box-shadow:0 0 0 4px rgba(109,74,255,.2)}
+.chipc.ok{border-color:var(--ok);background:var(--ok-s)}.chipc.no{border-color:var(--bad);background:var(--bad-s)}
+.chipc.ghost{position:fixed;z-index:99;pointer-events:none;transform:rotate(-2deg) scale(1.04);opacity:.95}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.zone{min-height:250px;border-radius:20px;padding:12px;display:flex;flex-direction:column;gap:8px;border:2px dashed transparent;transition:.15s}
+.zone h3{display:flex;align-items:center;gap:8px;margin:0 0 4px;font-family:Montserrat}
+.zone.z1{background:var(--sp-s);border-color:#bcd6ff}.zone.z1 h3{color:#1d5fd0}
+.zone.z2{background:var(--oo-s);border-color:#fbd79a}.zone.z2 h3{color:#b26b00}
+.zone.z3{background:#f1ecff;border-color:#d6caff}.zone.z3 h3{color:#5b3bd6}
+.zone.hov{transform:scale(1.01);box-shadow:0 0 0 4px rgba(109,74,255,.18)}
+.slots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+.slot{min-height:120px;border-radius:18px;background:rgba(255,255,255,.8);border:2px dashed #cfc5f5;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:10px;gap:8px;position:relative}
+.slot .num{font-family:Montserrat;font-weight:900;color:#d8cff8;font-size:28px}
+.slot .fm{font-family:ui-monospace,monospace;font-weight:800;font-size:14px;background:var(--ink);color:#fff;border-radius:7px;padding:2px 8px;display:none}
+.slot.ok .fm{display:inline-block}
+.slot.hov{border-color:var(--vi);background:#f3efff}
+.arrow{display:flex;align-items:center;justify-content:center;color:#b6a9ec;font-size:26px}
+.res{margin-top:12px;font-weight:800;font-size:18px}
 /* quiz */
-.qz{background:var(--ink);color:#fff;border-radius:20px;padding:28px}
-.qz .qh{display:flex;justify-content:space-between;align-items:center;color:#9fb0cc;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase}
-.qz .qq{font-size:32px;font-weight:700;line-height:1.25;margin:18px 0 22px;min-height:80px}
+.qz{background:linear-gradient(150deg,#1b1240,#3b237f);color:#fff;border-radius:24px;padding:26px;box-shadow:var(--sh)}
+.qz .qh{display:flex;justify-content:space-between;align-items:center;color:#c9bfff;font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.qz .qq{font-family:Montserrat;font-size:30px;font-weight:800;line-height:1.25;margin:16px 0 20px}
 .qz .ops{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.qz .op{border:none;border-radius:14px;padding:20px;font-size:22px;font-weight:700;color:#fff;text-align:left;display:flex;gap:12px;align-items:center;transition:.2s}
-.qz .op span{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:17px;flex:0 0 34px}
+.qz .op{border:none;border-radius:16px;padding:18px;font-size:21px;font-weight:700;color:#fff;text-align:left;display:flex;gap:12px;align-items:center}
+.qz .op span{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;flex:0 0 34px}
 .qz .op:nth-child(1){background:#e11d48}.qz .op:nth-child(2){background:#2563eb}.qz .op:nth-child(3){background:#d97706}.qz .op:nth-child(4){background:#16a34a}
-.qz.shown .op{opacity:.28}.qz.shown .op.c{opacity:1;box-shadow:0 0 0 4px #fff}
-.qz .qt{font-size:42px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff}
-.qz .qbar{height:8px;border-radius:4px;background:rgba(255,255,255,.12);margin-top:16px;overflow:hidden}.qz .qbar i{display:block;height:100%;background:#fbbf24}
-/* board score */
-table.sc td,table.sc th{text-align:center;white-space:nowrap}
-table.sc td:first-child,table.sc th:first-child{text-align:left}
-.cellb{min-width:46px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 8px;font-weight:800;font-size:17px}
-.minus{border:none;background:none;color:var(--muted);padding:2px 5px;font-size:18px}
-.tot{font-size:24px;font-weight:800}
-tr.lead td{background:#fffbeb}
-/* plan */
-.plan a{display:grid;grid-template-columns:96px 1fr 70px;gap:12px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
-.plan a:hover{background:var(--bg)}
-.plan .tm{font-family:ui-monospace,monospace;font-size:15px;color:var(--muted)}
-.plan .mm{text-align:right;font-weight:700}
-.plan .st{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-right:8px}
+.qz.shown .op{opacity:.25}.qz.shown .op.c{opacity:1;box-shadow:0 0 0 4px #fff}
+.qz .qt{font-family:Montserrat;font-size:40px;font-weight:900}
+.qz .qbar{height:8px;border-radius:4px;background:rgba(255,255,255,.14);margin-top:16px;overflow:hidden}.qz .qbar i{display:block;height:100%;background:#fcd34d}
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;margin-bottom:18px}
+.hero .ill{position:relative;aspect-ratio:1.25;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 60% 50%,#3b237f,#1b1240 70%);box-shadow:var(--sh)}
+.hero .ill svg{position:absolute;inset:0;width:100%;height:100%}
+.sw{animation:swim 7s linear infinite}
+@keyframes swim{0%{transform:translate(-60px,0)}100%{transform:translate(0,0)}}
+.tl{animation:wig .5s ease-in-out infinite alternate;transform-origin:0 0}
+@keyframes wig{from{transform:skewY(-8deg)}to{transform:skewY(8deg)}}
+.pulse{animation:pul 4s ease-in-out infinite;transform-origin:center}
+@keyframes pul{50%{transform:scale(1.035)}}
+.plan a{display:grid;grid-template-columns:88px 1fr 64px;gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;font-size:16.5px}
+.plan a:hover{background:#faf8ff}
+.plan .tm{font-family:ui-monospace,monospace;font-size:14px;color:var(--muted)}
+.plan .mm{text-align:right;font-weight:800;color:var(--vi)}
+.steps{counter-reset:s;list-style:none;margin:6px 0 0;padding:0}
+.steps li{counter-increment:s;display:flex;gap:12px;padding:7px 0;font-size:16px}
+.steps li::before{content:counter(s);flex:0 0 28px;height:28px;border-radius:9px;background:#efeaff;color:var(--vi);font-weight:800;display:flex;align-items:center;justify-content:center}
 /* video & 3d */
-.vid{border-radius:18px;overflow:hidden;background:#000;box-shadow:0 20px 60px rgba(13,20,36,.25)}
+.vid{border-radius:24px;overflow:hidden;background:#000;box-shadow:0 20px 50px rgba(27,18,64,.3)}
 .vid video{display:block;width:100%;aspect-ratio:16/9}
-#v3d{position:relative;height:min(68vh,640px);border-radius:18px;overflow:hidden;background:radial-gradient(800px 500px at 30% 30%,#13284f,transparent 60%),radial-gradient(700px 500px at 80% 75%,#2d1c08,transparent 60%),#060912}
+#v3d{position:relative;height:min(62vh,600px);border-radius:24px;overflow:hidden;background:radial-gradient(800px 500px at 30% 30%,#2b1f6b,transparent 60%),radial-gradient(700px 500px at 80% 75%,#3a2408,transparent 60%),#0b0820}
 #v3d canvas{display:block;width:100%;height:100%;touch-action:none}
-#v3d .hint{position:absolute;left:16px;bottom:14px;color:#9fb0cc;font-size:14px}
-#v3d .lab{position:absolute;color:#fff;font-size:15px;font-weight:700;background:rgba(5,8,18,.75);border:1px solid rgba(255,255,255,.18);padding:4px 10px;border-radius:8px;pointer-events:none;white-space:nowrap;transform:translate(-50%,-50%)}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:600;font-size:15px}
-.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+#v3d .lab{position:absolute;color:#fff;font-size:15px;font-weight:700;background:rgba(11,8,32,.78);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:9px;pointer-events:none;white-space:nowrap;transform:translate(-50%,-50%)}
+/* groups */
+.grp{border-top:6px solid var(--g)}
+.grp .gl{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--g)}
 /* reflection */
 .lights{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.light{border:1px solid var(--line);border-radius:16px;padding:22px;background:#fff;cursor:pointer;user-select:none}
+.light{cursor:pointer;user-select:none;text-align:center}
 .light:active{transform:scale(.98)}
-.light .bl{width:26px;height:26px;border-radius:50%;margin-bottom:12px}
-.light .c{font-size:44px;font-weight:800}
+.light .bl{width:54px;height:54px;border-radius:50%;margin:0 auto 10px;box-shadow:0 0 30px currentColor}
+.light .c{font-family:Montserrat;font-size:46px;font-weight:900}
 /* bottom nav */
-.nav{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;background:#fff;border-top:1px solid var(--line)}
-.nav .mid{color:var(--muted);font-size:15px;text-align:center}
-.nav .mid b{color:var(--ink)}
+.nav{position:relative;z-index:2;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px;background:rgba(255,255,255,.92);border-top:1px solid var(--line);backdrop-filter:blur(8px)}
+.nav .mid{color:var(--muted);font-size:15px;text-align:center}.nav .mid b{color:var(--ink)}
+.prog{position:absolute;left:0;top:-3px;height:3px;background:linear-gradient(90deg,#14b8a6,#6d4aff,#f0a42a);transition:width .3s}
 /* modal */
-.modal{position:fixed;inset:0;background:rgba(13,20,36,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal{position:fixed;inset:0;background:rgba(27,18,64,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
 .modal.on{display:flex}
-.modal .box{background:#fff;border-radius:18px;max-width:900px;width:100%;max-height:86vh;overflow:auto;padding:26px;position:relative}
-.modal .x{position:absolute;right:14px;top:12px;border:none;background:#f1f3f7;border-radius:9px;width:36px;height:36px;font-size:20px}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
-.split div{border-radius:10px;padding:10px 12px;font-size:16px}
-.split .a{background:var(--sp-s)}.split .b{background:var(--oo-s)}
-.split b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
-.split .a b{color:var(--sp)}.split .b b{color:#a16207}
-.blank{display:inline-block;min-width:120px;border-bottom:2px solid var(--ink2);text-align:center;font-weight:700;margin:0 4px;cursor:pointer}
-.word{border:1px dashed #b4bccc;background:#fff;border-radius:9px;padding:6px 14px;margin:4px;font-weight:600}
+.modal .box{background:#fff;border-radius:24px;max-width:980px;width:100%;max-height:86vh;overflow:auto;padding:26px;position:relative}
+.modal .x{position:absolute;right:14px;top:12px;border:none;background:#f3f0fb;border-radius:10px;width:38px;height:38px;font-size:20px}
+table.sc td,table.sc th{text-align:center;white-space:nowrap}table.sc td:first-child,table.sc th:first-child{text-align:left}
+.cellb{min-width:48px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 8px;font-weight:800;font-size:18px}
+.minus{border:none;background:none;color:var(--muted);padding:2px 5px;font-size:18px}
+.tot{font-family:Montserrat;font-size:26px;font-weight:900}
+tr.lead td{background:#fffbeb}
+.blank{display:inline-block;min-width:120px;border-bottom:2px solid var(--ink2);text-align:center;font-weight:800;margin:0 4px;cursor:pointer}
+.word{border:1px dashed #b9addf;background:#fff;border-radius:10px;padding:7px 14px;margin:4px;font-weight:700}
 .word.u{opacity:.3;pointer-events:none}
-.mc{display:flex;gap:8px;margin:8px 0 14px}
-.mc .ok{background:var(--ok);color:#fff;border-color:var(--ok)}.mc .no{background:var(--bad);color:#fff;border-color:var(--bad)}
-@media (max-width:1100px){.layout{grid-template-columns:1fr}.side{position:static}.g4{grid-template-columns:1fr 1fr}}
-@media (max-width:700px){main{padding:16px}h1{font-size:26px}.g2,.g3,.g4,.lights,.split,.qz .ops{grid-template-columns:1fr}.top .ttl span{display:none}.qz .qq{font-size:24px}.clock{font-size:60px}.tf{grid-template-columns:34px 1fr}.tf .a{grid-column:2}.tf .fx{grid-column:1/3}}
+.mc{display:flex;gap:8px;margin:8px 0 14px}.mc .ok{background:var(--ok);color:#fff;border-color:var(--ok)}.mc .no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.keygrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.keygrid div{border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center;cursor:pointer;background:#fff}
+.keygrid b{font-family:Montserrat;font-size:32px;visibility:hidden;color:var(--vi)}
+@media (max-width:1100px){.layout,.hero{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}main{overflow:auto}}
+@media (max-width:760px){body{overflow:auto}main{padding:14px}h1{font-size:26px}.g2,.g3,.g4,.cols,.lights,.qz .ops{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.logo span{display:none}.qz .qq{font-size:22px}.tf{grid-template-columns:36px 1fr}.tf .a{grid-column:2}.tf .fx{grid-column:1/3}.keygrid{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
+<div class="bgcells" id="bgcells"></div>
 <div class="top">
-  <div class="ttl"><i></i><span>§27 · Биология 11</span></div>
+  <div class="logo"><svg viewBox="0 0 40 40"><circle cx="25" cy="20" r="11" fill="#f0a42a"/><circle cx="25" cy="20" r="4.5" fill="#b26b00"/><ellipse cx="8" cy="20" rx="4" ry="2.6" fill="#9cc8ff"/><path d="M4 20 C1 17,-1 23,-4 20" stroke="#9cc8ff" stroke-width="1.5" fill="none" transform="translate(0,0)"/></svg><span>§27 · Биология 11</span></div>
   <div class="stages" id="stages"></div>
+  <button class="tbtn on" id="teachBtn" onclick="toggleTeach()">👩‍🏫 Мұғалімге</button>
   <button class="tbtn" onclick="openScore()">🏆 Ұпай</button>
   <button class="tbtn" onclick="fs()">⛶</button>
 </div>
 <main id="main"></main>
-<div class="nav">
+<div class="nav"><div class="prog" id="prog"></div>
   <button class="btn" onclick="go(cur-1)">← Алдыңғы</button>
   <div class="mid" id="navmid"></div>
-  <button class="btn dark" onclick="go(cur+1)">Келесі →</button>
+  <button class="btn pr" onclick="go(cur+1)">Келесі →</button>
 </div>
 <div class="modal" id="modal" onclick="if(event.target===this)closeM()"><div class="box"><button class="x" onclick="closeM()">×</button><div id="mbody"></div></div></div>
 
@@ -180,223 +218,246 @@ tr.lead td{background:#fffbeb}
 <script src="js/OrbitControls.js"></script>
 <script>
 const $=s=>document.querySelector(s);
-const esc=s=>s;
-const G=[["I топ","«Сперматогенез»","1-қатар","#2f7ff0"],["II топ","«Оогенез»","2-қатар","#db2777"],["III топ","«Мейоз»","3-қатар","#16a34a"],["IV топ","«Гаметалар»","4-қатар","#e09a1c"]];
-const STG={1:["Сабақтың басы","s1"],2:["Сабақтың ортасы","s2"],3:["Сабақтың соңы","s3"]};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const G=[["I топ","«Сперматогенез»","1-қатар","#2f7ff0"],["II топ","«Оогенез»","2-қатар","#ec4899"],["III топ","«Мейоз»","3-қатар","#14b8a6"],["IV топ","«Гаметалар»","4-қатар","#f0a42a"]];
+const STG={1:["Сабақтың басы","s1","Басы"],2:["Сабақтың ортасы","s2","Ортасы"],3:["Сабақтың соңы","s3","Соңы"]};
+/* background cells */
+(()=>{const c=$('#bgcells');const cols=['#d9cfff','#cfe3ff','#ffe2b3','#ffd6e7','#ccf2ec'];for(let i=0;i<11;i++){const d=document.createElement('i');const s=60+Math.random()*170;d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${cols[i%5]};animation-delay:${-i*2.3}s;animation-duration:${20+i*3}s`;c.appendChild(d)}})();
 
-/* ================= SCREENS ================= */
-const S=[];
-function add(o){S.push(o)}
+const S=[];const add=o=>S.push(o);
 
-/* 0 title */
+/* ===== 0 HOME ===== */
 add({id:"home",st:0,title:"Сабақ туралы",render(){
-  let acc=0;const rows=S.filter(s=>s.min).map(s=>{const a=acc;acc+=s.min;return `<a href="#${s.id}"><span class="tm">${a}′–${acc}′</span><span><span class="st pill ${STG[s.st][1]}">${STG[s.st][0].split(' ')[1]}</span><b>${s.title}</b>${s.task?' <span class="muted" style="font-size:14px">· тапсырма'+(s.ws?' · ЖП '+s.ws:'')+'</span>':''}</span><span class="mm">${s.min} мин</span></a>`}).join('');
-  return `<div class="hd"><div><div class="kicker"><span class="pill">Биология · 11-сынып · 5-тарау «Көбею»</span><span class="pill min">Оқулық: 140–143-беттер, 5.2-сурет</span></div>
-  <h1>§27. Сперматогенез бен оогенездің айырмашылықтары</h1><p class="lead">Ашық сабақ. Сабақ ҚМЖ кезеңдері бойынша ретімен өтеді, жалпы ұзақтығы — 45 минут.</p></div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="materialdar/Zhumys-paraqtary-27.pdf" target="_blank" style="text-decoration:none">📄 Жұмыс парақтары (PDF)</a><button class="btn dark" onclick="go(1)">Сабақты бастау →</button></div></div>
-  <div class="layout"><div class="card plan" style="padding:0;overflow:hidden">${rows}<a style="background:var(--ink);color:#fff"><span class="tm" style="color:#9fb0cc">0′–${acc}′</span><b>Барлығы</b><span class="mm">${acc} мин</span></a></div>
-  <div class="side"><div class="card"><h3>Оқу мақсаты</h3><p style="margin:0"><b style="font-family:ui-monospace,monospace;color:var(--ac)">11.2.1.2</b> — сперматогенез бен оогенездің айырмашылығын түсіндіру.</p></div>
-  <div class="card"><h3>Сабақ мақсаты</h3><p style="margin:0;font-size:16.5px">Сперматогенез бен оогенез үдерістерін салыстырып, ұқсастықтары мен айырмашылықтарын анықтау; мейоздың және гаметалар құрылысының биологиялық маңызын түсіндіру.</p></div>
-  <div class="card"><h3>Құндылық</h3><p style="margin:0;font-size:16.5px">Әділдік және жауапкершілік: өз жауабын дәлелдеу, өзгенің пікірін құрметтеу, өз жұмысын әділ бағалау.</p></div></div></div>`}});
+ let acc=0;const rows=S.filter(s=>s.min).map(s=>{const a=acc;acc+=s.min;return `<a href="#${s.id}"><span class="tm">${a}′–${acc}′</span><span><span class="pill ${STG[s.st][1]}" style="font-size:11px;padding:2px 8px;margin-right:8px">${STG[s.st][2]}</span><b>${s.title}</b></span><span class="mm">${s.min} мин</span></a>`}).join('');
+ return `<div class="hero"><div><div class="kick"><span class="pill">Биология · 11-сынып</span><span class="pill w">Оқулық 140–143-беттер · 5.2-сурет</span></div>
+ <h1 style="font-size:46px">§27. Сперматогенез бен оогенездің айырмашылықтары</h1>
+ <p class="muted" style="font-size:19px;margin:12px 0 18px">Екі үдеріс — бір мақсат: гаплоидті гаметалардың түзілуі. Ашық сабақ · 45 минут.</p>
+ <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn pr" onclick="go(1)">▶ Сабақты бастау</button><a class="btn" href="materialdar/Zhumys-paraqtary-27.pdf" target="_blank">📄 Жұмыс парақтары (PDF)</a></div></div>
+ <div class="ill">${heroSVG()}</div></div>
+ <div class="layout"><div class="card plan" style="padding:0;overflow:hidden"><div style="padding:14px 16px 6px"><h2>Сабақ жоспары · 45 минут</h2></div>${rows}</div>
+ <div class="side"><div class="card"><h2>Сайтты қалай қолданамын?</h2><ol class="steps">
+ <li>Келесі экранға «Келесі →» батырмасымен немесе пернетақтадағы → бағыттауышымен өтесіз.</li>
+ <li>Әр экранның басындағы сары жолақта мұғалімнің не істейтіні жазылған. Сабақ кезінде оны жоғарғы «👩‍🏫 Мұғалімге» батырмасымен жасырасыз.</li>
+ <li>Тапсырма экранында «▶ Бастау» басылса, таймер жүреді. Оң жақта «Кім тексереді» және дескрипторлар тұрады.</li>
+ <li>Топтар ұпай алғанда «🏆 Ұпай» батырмасын басып, топтың ұпайын қосасыз.</li>
+ <li>Жұмыс парақтарын (PDF) сабаққа дейін басып шығарып қойыңыз.</li></ol></div>
+ <div class="card"><h3>Оқу мақсаты</h3><p style="margin:0"><b style="color:var(--vi)">11.2.1.2</b> — сперматогенез бен оогенездің айырмашылығын түсіндіру.</p></div></div></div>`}});
 
-/* 1 organization */
-add({id:"start",st:1,min:3,title:"Ұйымдастыру. Психологиялық ахуал",render(){
-  return head(this,"Сәлемдесу, психологиялық ахуал және топқа бөлу.")+`
-  <div class="grid g2"><div class="card"><span class="pill">1-қадам</span><h2 style="margin-top:10px">«n + n = 2n»</h2>
-  <p style="margin:0">Әр оқушы өзін бір гамета (<b>n</b>) деп елестетеді. Орнынан тұрмай, жанындағы көршісіне бұрылып, оған бір жылы тілек айтады. Екеуі қосылып, бір «зигота» (<b>2n</b>) түзеді.</p>
-  <p class="muted" style="margin:12px 0 0">Мұғалімнің сөзі: «Бір гамета жалғыз жаңа өмір бастай алмайды. Екі гамета бірін-бірі толықтырғанда ғана тіршілік басталады. Бүгін біз де бірін-біріміз толықтырып жұмыс істейміз».</p></div>
-  <div class="card"><span class="pill">2-қадам · орыннан тұрмай</span><h2 style="margin-top:10px">Қатар бойынша 4 топ</h2>
-  <div class="grid g2" style="gap:10px">${G.map(g=>`<div style="border-left:5px solid ${g[3]};background:var(--bg);border-radius:10px;padding:10px 12px"><b>${g[0]} ${g[1]}</b><div class="muted" style="font-size:15px">${g[2]}</div></div>`).join('')}</div>
-  <p class="muted" style="margin:12px 0 0;font-size:16.5px">Әр оқушы өз тобының атауына байланысты бір сөз айтады (мысалы, «Мейоз» тобы: бөліну, гаплоид, кроссинговер...). Сөздер қайталанбайды.</p></div></div>
-  <div class="card" style="margin-top:16px;background:var(--ac-s);border-color:#dcdcfb"><b>🔗 Рефлексиямен байланысы:</b> сабақ соңында осы жұптар «Біздің зиготамыз» әдісімен бүгін не үйренгенін бір-біріне айтады.</div>`}});
+/* ===== 1 START ===== */
+add({id:"start",st:1,min:3,title:"Ұйымдастыру · «n + n = 2n»",
+ teach:["Оқушылармен амандасып, «n + n = 2n» әдісін түсіндіресіз.","Әр оқушы орнынан тұрмай көршісіне бұрылып, бір тілек айтады.","Оқушылар отырған қатары бойынша 4 топқа бөлінеді. Әр оқушы өз тобының атауына байланысты бір сөз айтады."],
+ render(){return head(this)+`<div class="grid g2"><div class="card"><span class="pill">Психологиялық ахуал</span><h2 style="margin-top:12px">«Біз — гаметалармыз»</h2>
+ <div style="display:flex;align-items:center;gap:18px;margin:10px 0">${miniCell('#2f7ff0','n')}<b style="font-size:30px;color:var(--muted)">+</b>${miniCell('#f0a42a','n')}<b style="font-size:30px;color:var(--muted)">=</b>${miniCell('#8b5cf6','2n',64)}</div>
+ <p style="margin:0">Әр оқушы өзін бір гамета (<b>n</b>) деп елестетеді. Көршісіне бір жылы тілек айтып, екеуі бір «зигота» (<b>2n</b>) түзеді.</p>
+ <p class="muted" style="margin:10px 0 0;font-size:16px">«Екі гамета бірін-бірі толықтырғанда ғана жаңа өмір басталады. Бүгін біз де бірін-біріміз толықтырамыз».</p></div>
+ <div class="card"><span class="pill">Топқа бөлу · орыннан тұрмай</span><div class="grid g2" style="gap:10px;margin-top:14px">${G.map(g=>`<div style="border-radius:16px;padding:12px 14px;background:${g[3]}14;border:2px solid ${g[3]}40"><b style="color:${g[3]}">${g[0]}</b><div style="font-weight:700">${g[1]}</div><div class="muted" style="font-size:14.5px">${g[2]}</div></div>`).join('')}</div>
+ <p class="muted" style="margin:12px 0 0;font-size:16px">Мысалы, «Мейоз» тобы: «бөліну», «гаплоид», «кроссинговер». Сөздер қайталанбайды.</p></div></div>`}});
 
-/* 2 brainstorm */
-const BS=[["Неліктен сперматогенез нәтижесінде төрт сперматозоид, ал оогенез нәтижесінде бір ірі жұмыртқа жасушасы түзіледі?","Сперматогенезде цитоплазма тең бөлінеді, төрт жасуша да гаметаға айналады. Оогенезде цитоплазма мен қоректік заттар бір жасушада жиналады, қалғандары полярлы денешіктер болады."],
-["Екі үдерісте де мейоз жүрсе, нәтижесі неге әртүрлі?","Хромосома саны екеуінде де бірдей азаяды (2n → n). Айырмашылық цитоплазманың бөлінуінде."],
-["Сперматозоидтың кіші әрі қозғалғыш болуының қандай артықшылығы бар?","Жұмыртқа жасушасына тез жетеді, саны көп болғандықтан ұрықтану мүмкіндігі артады."],
-["Жұмыртқа жасушасының ірі болуы оның қызметімен қалай байланысты?","Онда ұрықтың алғашқы дамуына қажетті қоректік заттар (сарыуыз) мен мРНҚ қоры жиналады."],
-["Бұл айырмашылықтар ұрықтану үдерісіне қалай әсер етеді?","Қозғалғыш сперматозоид пен қоректік қоры мол жұмыртқа жасушасы бірін-бірі толықтырады: n + n = 2n."]];
-add({id:"brain",st:1,min:3,task:1,title:"Миға шабуыл: «Бір мақсат, екі түрлі жасуша»",
- who:["🗣️","Мұғалім · ауызша","Дұрыс әрі дәлелді жауап берген топқа ұпай тақтасына +1."],
- desc:[["Проблемалық сұраққа болжам айтады",1],["Болжамын биологиялық дерекпен дәлелдейді",1]],
- render(){return taskWrap(this,"Проблемалық сұрақтар арқылы ой қозғау. Топтар талқылап, жауап береді.",`<div class="grid g3">${BS.map((q,i)=>`<div class="card qc"><div class="n">0${i+1}</div><p>${q[0]}</p><div><button class="btn sm" onclick="tg(this)">Жауабын көрсету</button></div><div class="rv">${q[1]}</div></div>`).join('')}</div>`)}});
+/* ===== 2 BRAIN + GOAL ===== */
+const BS=[["Неліктен сперматогенезде 4 сперматозоид, ал оогенезде бір ғана жұмыртқа жасушасы түзіледі?","Сперматогенезде цитоплазма тең бөлінеді. Оогенезде қоректік заттар бір жасушада жиналады, қалғандары полярлы денешіктер болады."],
+["Екі үдерісте де мейоз жүрсе, нәтижесі неге әртүрлі?","Хромосома саны екеуінде де бірдей азаяды (2n → n), ал айырмашылық цитоплазманың бөлінуінде."],
+["Жұмыртқа жасушасы неге ірі, ал сперматозоид неге кішкентай әрі қозғалғыш?","Жұмыртқада ұрыққа қажетті қоректік қор бар. Сперматозоид жұмыртқаға тез жету үшін кішкентай әрі қозғалғыш."]];
+add({id:"brain",st:1,min:4,task:1,title:"Миға шабуыл және мақсат қою",
+ teach:["Сұрақты оқып, топтарға 30 секунд ойлануға уақыт бересіз.","Жауапты тыңдаған соң «Жауабы» батырмасын басасыз.","Соңында төмендегі сабақ мақсатын оқушылармен бірге айтасыз."],
+ who:["🗣️","Мұғалім · ауызша","Дұрыс жауап берген топқа +1 ұпай."],desc:[["Болжам айтады",1],["Дерекпен дәлелдейді",1]],
+ render(){return taskWrap(this,`<div class="grid g3">${BS.map((q,i)=>`<div class="card qc"><div class="n">0${i+1}</div><p>${q[0]}</p><button class="btn sm" onclick="tg(this)">Жауабы</button><div class="rv">${q[1]}</div></div>`).join('')}</div>
+ <div class="card" style="margin-top:16px;background:linear-gradient(90deg,#f1ecff,#fff)"><span class="pill">Сабақтың мақсаты · 11.2.1.2</span><p style="margin:10px 0 0;font-size:19px"><b>Бүгін біз</b> сперматогенез бен оогенезді сатылар бойынша салыстырып, олардың айырмашылықтары мен себептерін түсіндіреміз.</p></div>`)}});
 
-/* 3 goal */
-add({id:"goal",st:1,min:1,title:"Сабақтың мақсаты мен бағалау критерийлері",render(){
- return head(this,"Миға шабуылдан кейін оқушылармен бірге мақсат қойылады.")+`<div class="grid g3">
- <div class="card"><span class="pill">Оқу мақсаты</span><h2 style="margin-top:10px">11.2.1.2</h2><p style="margin:0">Сперматогенез бен оогенездің айырмашылығын түсіндіру.</p></div>
- <div class="card"><span class="pill">Бүгін біз…</span><ul style="margin:10px 0 0;padding-left:20px"><li>екі үдерісті сатылар бойынша салыстырамыз;</li><li>айырмашылықтардың себебін түсіндіреміз;</li><li>гаметалардың құрылысы мен қызметін байланыстырамыз.</li></ul></div>
- <div class="card"><span class="pill">Бағалау критерийлері</span><ul style="margin:10px 0 0;padding-left:20px"><li>Гаметогенез сатыларын атайды;</li><li>ұқсастықтарын көрсетеді;</li><li>кемінде 5 айырмашылықты дәлелдейді.</li></ul></div></div>`}});
+/* ===== 3 VIDEO + 3D ===== */
+add({id:"video",st:2,min:4,title:"Жаңа сабақ: 3D видео",onHide:()=>stop3D(),
+ teach:["«Видео» бөлімін ашып, видеоны қосасыз (2 минут, дыбысы бар).","Видеодан кейін «3D модель» бөлімінде сперматозоид пен жұмыртқа жасушасын айналдырып көрсетесіз.","Келесі экранда оқушылар тақтада тапсырма орындайды."],
+ render(){return head(this)+`<div class="tabs" id="vtabs"><button class="on" onclick="vtab(0,this)">🎬 Видео</button><button onclick="vtab(1,this)">🧬 3D модель</button></div><div id="vbody"></div>`},
+ after(){vtab(0,$('#vtabs button'))}});
 
-/* 4 video */
-add({id:"video",st:2,min:3,title:"Жаңа сабақ: 3D видео",render(){
- return head(this,"Видеоны көріп, сперматогенез бен оогенездің әр сатыдағы айырмашылығын бақылаңдар.")+`<div class="layout"><div class="vid"><video controls preload="metadata" playsinline poster="img/poster.jpg"><source src="video.mp4" type="video/mp4"></video></div>
- <div class="side"><div class="card"><h3>Видеодан кейін</h3><ul style="margin:6px 0 0;padding-left:20px;font-size:16.5px"><li>Сперматогенездің неше сатысы бар?</li><li>Оогенезде қай саты жоқ?</li><li>Бір жасушадан неше гамета түзіледі?</li><li>Полярлы денешік қалай пайда болады?</li></ul></div>
- <div class="card"><h3>Сатылар</h3><div class="split" style="grid-template-columns:1fr 1fr"><div class="a"><b>♂ Сперматогенез</b>Көбею → Өсу → Жетілу → Түзілу</div><div class="b"><b>♀ Оогенез</b>Көбею → Өсу → Жетілу</div></div></div></div></div>`}});
+/* ===== 4 BOARD (drag & drop) ===== */
+const SORT=[["Бір жасушадан 4 гамета түзіледі","sp"],["Түзілу сатысы бар","sp"],["Жыныстық жетілуден бастап үздіксіз жүреді","sp"],["Гамета кішкентай, қозғалғыш","sp"],["1 жұмыртқа + 3 полярлы денешік түзіледі","oo"],["Цитоплазма тең бөлінбейді","oo"],["Жатырішілік кезеңде басталады","oo"],["≈ 28 күндік цикл","oo"],["Мейоз жүреді","both"],["Гаплоидті (n) гаметалар түзіледі","both"],["Көбею, өсу, жетілу сатылары бар","both"]];
+const ORDER=[["Сперматогония","2n2c"],["1-реттік сперматоцит","2n4c"],["2-реттік сперматоцит","n2c"],["Сперматида","nc"],["Сперматозоид","nc"]];
+add({id:"board",st:2,min:5,task:1,title:"Тақтада жұмыс",
+ teach:["Әр топтан бір оқушыны кезекпен тақтаға шақырасыз.","Оқушы бір карточканы сүйреп, керекті бағанға апарады. Оның орнына карточканы басып, сосын бағанды басса да болады.","Барлығы орналасқан соң «Тексеру» батырмасын басасыз. Дұрыс орналастырған топқа +1 ұпай береді."],
+ who:["🧑‍🏫","Сынып бірге тексереді","Тақтадағы түс бірден көрсетеді: жасыл — дұрыс, қызыл — қате."],desc:[["Белгілерді дұрыс сұрыптайды",3],["Сатыларды ретімен қояды",2]],
+ render(){return taskWrap(this,`<div class="tabs" id="btabs"><button class="on" onclick="btab(0,this)">1. Сұрыпта</button><button onclick="btab(1,this)">2. Ретімен қой</button></div><div id="bbody"></div>`)},
+ after(){btab(0,$('#btabs button'))}});
 
-/* 5 3D model */
-add({id:"model",st:2,min:1,title:"3D модель: гаметалардың құрылысы",onShow:()=>init3D(),onHide:()=>stop3D(),render(){
- return head(this,"Модельді саусақпен немесе тінтуірмен айналдырып, жақындатуға болады.")+`<div class="tabs" id="m3tabs"><button class="on" onclick="mode3D('fert',this)">Ұрықтану</button><button onclick="mode3D('sperm',this)">Сперматозоид</button><button onclick="mode3D('egg',this)">Жұмыртқа жасушасы</button><button onclick="mode3D('cmp',this)">Нәтиже: 4 және 1</button></div>
- <div id="v3d"><div class="hint">Айналдыру — сүйреу · Жақындату — шиыршық / екі саусақ</div></div>`}});
-
-/* 6 textbook */
-const DIF=[["Қай жерде жүреді","Аталық без (ен)","Аналық без (жұмыртқалық)"],["Басталу уақыты","Жыныстық жетілуден","Жатырішілік (ұрықтық) кезеңнен"],["Ырғағы","Үздіксіз","Циклді, ≈ 28 күн"],["Өсу сатысы","Қысқа","Ұзақ, ооцит қатты ұлғаяды"],["Цитоплазманың бөлінуі","Тең","Тең емес → полярлы денешіктер"],["Түзілу сатысы","Бар (спермиогенез)","Жоқ"],["Нәтижесі (1 жасушадан)","4 сперматозоид","1 жұмыртқа + 3 полярлы денешік"],["Гаметаның құрылысы","Кішкентай, қозғалғыш, митохондрияларға бай","Ірі (150–200 мкм), қоректік заттарға бай, фолликулмен қоршалған"]];
+/* ===== 5 BOOK ===== */
+const DIF=[["Қай жерде жүреді","Аталық без (ен)","Аналық без (жұмыртқалық)"],["Басталуы","Жыныстық жетілуден","Жатырішілік кезеңнен"],["Ырғағы","Үздіксіз","≈ 28 күндік цикл"],["Өсу сатысы","Қысқа","Ұзақ"],["Цитоплазма","Тең бөлінеді","Тең бөлінбейді"],["Түзілу сатысы","Бар (спермиогенез)","Жоқ"],["Нәтижесі","4 сперматозоид","1 жұмыртқа + 3 полярлы денешік"],["Гамета","Кішкентай, қозғалғыш","Ірі (150–200 мкм), қоректік заттарға бай"]];
 add({id:"book",st:2,min:5,task:1,ws:"№1",title:"Оқулықпен жұмыс",
- who:["🔄","Өзара бағалау","Жұптар парақтарын ауыстырып, тақтадағы кесте бойынша тексереді."],
- desc:[["Оқулықтан кемінде 6 айырмашылықты табады",2],["Екі үдерістің нәтижесін дұрыс жазады",1],["Кемінде 2 ұқсастықты көрсетеді",1]],
- render(){return taskWrap(this,"Оқулықтың 140–143-беттерін және 5.2-суретті оқып, жұмыс парағындағы кестені толтырыңдар. Тексеру кезінде ұяшықтарды ашыңдар.",
- `<table class="t"><thead><tr><th style="width:26%">Белгі</th><th>♂ Сперматогенез</th><th>♀ Оогенез</th></tr></thead><tbody>${DIF.map((d,i)=>`<tr><td><b>${i+1}. ${d[0]}</b></td><td class="h sp" onclick="this.classList.add('s')">${d[1]}</td><td class="h oo" onclick="this.classList.add('s')">${d[2]}</td></tr>`).join('')}</tbody></table>
- <div class="card" style="margin-top:14px"><b>Ұқсастығы:</b> екеуі де жыныс бездерінде жүреді; көбею, өсу, жетілу сатылары бар; мейоз нәтижесінде гаплоидті (n) гаметалар түзіледі. <button class="btn sm" style="margin-left:8px" onclick="document.querySelectorAll('#main td.h').forEach(t=>t.classList.add('s'))">Барлығын ашу</button></div>`)}});
+ teach:["Оқушылар оқулықтың 140–143-беттерін оқып, Жұмыс парағы №1-дегі кестені толтырады.","Уақыт біткен соң жұптар парақтарын ауыстырады.","Тақтадағы ұяшықтарды бір-бірлеп ашасыз, оқушылар соған қарап тексереді."],
+ who:["🔄","Өзара бағалау","Жұптар парақтарын ауыстырып тексереді."],desc:[["Кемінде 6 айырмашылық табады",2],["Нәтижесін дұрыс жазады",1],["2 ұқсастық көрсетеді",1]],
+ render(){return taskWrap(this,`<table class="t"><thead><tr><th style="width:24%">Белгі</th><th>♂ Сперматогенез</th><th>♀ Оогенез</th></tr></thead><tbody>${DIF.map((d,i)=>`<tr><td><b>${i+1}. ${d[0]}</b></td><td class="h" onclick="this.classList.add('s')">${d[1]}</td><td class="h" onclick="this.classList.add('s')">${d[2]}</td></tr>`).join('')}</tbody></table>
+ <div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn sm" onclick="document.querySelectorAll('#main td.h').forEach(t=>t.classList.add('s'))">Барлығын ашу</button><span class="muted" style="font-size:16px"><b>Ұқсастығы:</b> мейоз жүреді, гаплоидті гаметалар түзіледі, көбею–өсу–жетілу сатылары бар.</span></div>`)}});
 
-/* 7 individual */
-const TF=[["Сперматогенез нәтижесінде төрт функционалды гамета түзіледі.",1,"Дұрыс."],["Оогенез кезінде цитоплазма барлық жасушаға тең бөлінеді.",0,"Цитоплазма тең бөлінбейді, көп бөлігі бір жұмыртқа жасушасында қалады."],["Сперматогенез бен оогенезде хромосома саны мейоз нәтижесінде азаяды.",1,"Дұрыс: 2n → n."],["Адамда оогенез жыныстық жетілуден кейін ғана басталады.",0,"Оогенез ұрықтық кезеңде басталып, жыныстық жетілуден кейін жалғасады."],["Полярлы денешіктер цитоплазманың тең бөлінбеуі нәтижесінде пайда болады.",1,"Дұрыс."],["Түзілу сатысы оогенезге де, сперматогенезге де тән.",0,"Түзілу сатысы тек сперматогенезге тән."]];
-add({id:"individual",st:2,min:4,task:1,ws:"№2",title:"Жеке жұмыс: «Ғылыми қатесін тап»",
- who:["🪞","Өзін-өзі бағалау","Оқушы өз жұмысын тақтадағы кілт бойынша тексереді."],
- desc:[["Тұжырымның дұрыс/бұрыс екенін анықтайды (әрқайсысы 1)",6],["Қате тұжырымдарды ғылыми тұрғыда түзетеді",3]],
- render(){return taskWrap(this,"Тұжырымдарды оқып, Д немесе Б деп белгілеңдер, қатесін түзетіңдер. Тексеру кезінде тақтада жауапты таңдаңдар.",
- `<div class="card">${TF.map((t,i)=>`<div class="tf" data-a="${t[1]}"><div class="i">${i+1}</div><div style="font-size:18px">${t[0]}</div><div class="a"><button class="btn sm" onclick="tf(this,1)">Дұрыс</button><button class="btn sm" onclick="tf(this,0)">Бұрыс</button></div><div class="fx">${t[2]}</div></div>`).join('')}</div>`)}});
+/* ===== 6 INDIVIDUAL ===== */
+const TF=[["Сперматогенез нәтижесінде төрт функционалды гамета түзіледі.",1,"Дұрыс."],["Оогенез кезінде цитоплазма барлық жасушаға тең бөлінеді.",0,"Тең бөлінбейді, көп бөлігі жұмыртқа жасушасында қалады."],["Сперматогенез бен оогенезде хромосома саны мейоз нәтижесінде азаяды.",1,"Дұрыс: 2n → n."],["Адамда оогенез жыныстық жетілуден кейін ғана басталады.",0,"Ұрықтық кезеңде басталып, жыныстық жетілуден кейін жалғасады."],["Полярлы денешіктер цитоплазманың тең бөлінбеуінен пайда болады.",1,"Дұрыс."],["Түзілу сатысы екі үдеріске де тән.",0,"Тек сперматогенезге тән."]];
+add({id:"individual",st:2,min:4,task:1,ws:"№2",title:"Жеке жұмыс: «Қатесін тап»",
+ teach:["Оқушылар Жұмыс парағы №2-ні өз бетінше орындайды.","Уақыт біткен соң оқушыларды бір-бірлеп тақтаға шақырасыз, олар «Дұрыс» не «Бұрыс» батырмасын басады.","Әр оқушы өз жұмысын тақтаға қарап тексереді (өзін-өзі бағалау)."],
+ who:["🪞","Өзін-өзі бағалау","Тақтадағы кілт бойынша өз жұмысын тексереді."],desc:[["Д/Б дұрыс анықтайды",6],["Қатені түзетеді",3]],
+ render(){return taskWrap(this,`<div class="card">${TF.map((t,i)=>`<div class="tf" data-a="${t[1]}"><div class="i">${i+1}</div><div style="font-size:18px">${t[0]}</div><div class="a"><button class="btn sm" onclick="tf(this,1)">✓ Дұрыс</button><button class="btn sm" onclick="tf(this,0)">✗ Бұрыс</button></div><div class="fx">${t[2]}</div></div>`).join('')}</div>`)}});
 
-/* 8 pairs */
-const PR=[["sp","Сперматозоид",[["Акросома","Жұмыртқа қабықшасын еритін ферменттер","Жұмыртқа жасушасына енуге мүмкіндік береді"],["Ядро","Гаплоидті (n) хромосомалар","Аталық тұқым қуалау ақпаратын береді"],["Митохондриялар","АТФ түзеді","Қозғалысқа энергия береді"],["Құйрық","Қозғалыс","Жұмыртқа жасушасына жетеді"]]],
-["oo","Жұмыртқа жасушасы",[["Цитоплазма, сарыуыз","Қоректік заттар қоры","Ұрықтың алғашқы дамуын қоректендіреді"],["Ядро","Гаплоидті (n) хромосомалар","Аналық тұқым қуалау ақпаратын береді"],["Матрицалық РНҚ","Ұрық дамуының алғашқы кезеңінде қолданылады","Зиготаның алғашқы бөлінулерін қамтамасыз етеді"],["Фолликулалық жасушалар","Қоректендіреді, қорғайды","Жұмыртқа жасушасын сыртқы әсерден сақтайды"]]]];
-add({id:"pairs",st:2,min:5,task:1,ws:"№3",title:"Жұптық жұмыс: «Гаметалардың биологиялық таңдауы»",
- who:["👥","Өзара бағалау","Көрші жұп парақты тексеріп, дескриптор бойынша ұпай қояды."],
- desc:[["Әр құрылымның қызметін дұрыс жазады",2],["Биологиялық маңызын түсіндіреді",1],["Гаметалардың бірін-бірі толықтыруын дәлелдейді",1]],
- render(){return taskWrap(this,"А оқушы — сперматозоидты, Ә оқушы — жұмыртқа жасушасын зерттейді. «Құрылым → қызмет → маңызы» тізбегін толтырып, бір-біріне түсіндіреді.",
- `<div class="grid g2">${PR.map(p=>`<div><h3><span class="pill ${p[0]==='sp'?'s1':'s3'}">${p[0]==='sp'?'А оқушы':'Ә оқушы'}</span> ${p[1]}</h3><table class="t"><thead><tr><th>Құрылым</th><th>Қызметі</th><th>Маңызы</th></tr></thead><tbody>${p[2].map(r=>`<tr><td><b>${r[0]}</b></td><td class="h" onclick="this.classList.add('s')">${r[1]}</td><td class="h" onclick="this.classList.add('s')">${r[2]}</td></tr>`).join('')}</tbody></table></div>`).join('')}</div>`)}});
+/* ===== 7 PAIRS ===== */
+const PR=[["Сперматозоид","#2f7ff0",[["Акросома","Ферменттері жұмыртқа қабықшасын ерітеді"],["Ядро","Гаплоидті хромосомалар (n)"],["Митохондриялар","Қозғалысқа энергия (АТФ) береді"],["Құйрық","Қозғалыс — жұмыртқаға жетеді"]]],
+["Жұмыртқа жасушасы","#f0a42a",[["Сарыуыз, цитоплазма","Ұрықты қоректендіреді"],["Ядро","Гаплоидті хромосомалар (n)"],["Матрицалық РНҚ","Ұрықтың алғашқы дамуына қажет"],["Фолликулалық жасушалар","Қоректендіреді, қорғайды"]]]];
+add({id:"pairs",st:2,min:4,task:1,ws:"№3",title:"Жұптық жұмыс: «Құрылым → қызмет»",
+ teach:["Жұптағы А оқушы сперматозоидты, Ә оқушы жұмыртқа жасушасын зерттейді (Жұмыс парағы №3).","Екеуі бір-біріне түсіндіреді.","Тақтадағы ұяшықтарды ашасыз, көрші жұп тексереді."],
+ who:["👥","Өзара бағалау","Көрші жұп тексереді."],desc:[["Қызметін дұрыс жазады",2],["Маңызын түсіндіреді",1],["Бірін-бірі толықтыруын дәлелдейді",1]],
+ render(){return taskWrap(this,`<div class="grid g2">${PR.map((p,k)=>`<div><h3 style="color:${p[1]};font-family:Montserrat">${k?'Ә':'А'} оқушы · ${p[0]}</h3><table class="t"><thead><tr><th>Құрылым</th><th>Қызметі / маңызы</th></tr></thead><tbody>${p[2].map(r=>`<tr><td><b>${r[0]}</b></td><td class="h" onclick="this.classList.add('s')">${r[1]}</td></tr>`).join('')}</tbody></table></div>`).join('')}</div>`)}});
 
-/* 9 groups */
-const GR=[["Төрт гамета құпиясы","Неліктен сперматогенез кезінде төрт функционалды гамета түзіледі?","Мейоз I және II нәтижесінде бір сперматоциттен төрт гаплоидті сперматозоид түзіледі; цитоплазма тең бөлінеді, төрт жасуша да гаметаға айналады."],
-["Бір жұмыртқа жасушасының артықшылығы","Оогенез кезінде неге бір ірі жұмыртқа жасушасы қалыптасады?","Цитоплазма тең бөлінбейді: қоректік заттар бір жасушада қалады, қалғандары полярлы денешіктер болып, гамета болмайды."],
-["Мейоздың генетикалық миссиясы","Екі үдерісте де мейоздың жүруі неліктен маңызды?","Хромосома саны екі есе азаяды (2n → n); кроссинговер мен тәуелсіз ажырау генетикалық әртүрлілік береді."],
-["Ұрықтанудың биологиялық үйлесімі","Сперматозоид пен жұмыртқа жасушасының ерекшеліктері бірін-бірі қалай толықтырады?","Сперматозоид қозғалғыш, жұмыртқаға жетеді; жұмыртқа ірі, қоректік қоры мол; n + n = 2n зиготасы түзіледі."]];
-add({id:"groups",st:2,min:8,task:1,ws:"№4",title:"Топтық жұмыс: «Репродуктивті биологтар конгресі»",
- who:["⭐","Топтар бірін-бірі бағалайды","«Екі жұлдыз, бір тілек» әдісі. Ұпайлар ұпай тақтасына жазылады."],
- desc:[["Зерттеу сұрағына ғылыми дұрыс жауап береді",2],["Сызбаны дұрыс құрастырады",2],["Әр мүше қатысады, постерді қорғайды",1],["Сұраққа дәлелді жауап береді",1]],
- render(){return taskWrap(this,"Әр топ зерттеу сұрағына жауап беріп, түсіндіру сызбасы бар постер жасайды (5 мин) және қорғайды (3 мин). Оқулық 140–143-беттер, 5.2-сурет.",
- `<div class="grid g2">${GR.map((g,i)=>`<div class="card grp" style="--g:${G[i][3]}"><div class="gl">${G[i][0]} ${G[i][1]}</div><h3 style="margin-top:4px">«${g[0]}»</h3><div class="rq"><b>Зерттеу сұрағы:</b> ${g[1]}</div><button class="btn sm" onclick="tg(this)">Күтілетін жауап</button><div class="rv">${g[2]}</div></div>`).join('')}</div>`)}});
+/* ===== 8 GROUPS ===== */
+const GR=[["Төрт гамета құпиясы","Неліктен сперматогенезде 4 функционалды гамета түзіледі?","Мейоз I және II нәтижесінде 4 гаплоидті жасуша түзіледі, цитоплазма тең бөлінеді."],
+["Бір жұмыртқаның артықшылығы","Оогенезде неге бір ірі жұмыртқа жасушасы қалыптасады?","Цитоплазма тең бөлінбейді: қоректік қор бір жасушада қалады, басқалары полярлы денешіктер болады."],
+["Мейоздың миссиясы","Екі үдерісте де мейоз неліктен маңызды?","Хромосома саны 2n → n азаяды; кроссинговер генетикалық әртүрлілік береді."],
+["Ұрықтанудың үйлесімі","Екі гамета бірін-бірі қалай толықтырады?","Сперматозоид қозғалғыш, жұмыртқа қоректік қорға бай: n + n = 2n зиготасы түзіледі."]];
+add({id:"groups",st:2,min:7,task:1,ws:"№4",title:"Топтық жұмыс: «Биологтар конгресі»",
+ teach:["Әр топ өз сұрағы бойынша сызба салып, постер жасайды (4 мин).","Әр топ постерін 45 секундтан қорғайды.","Топтар бірін-бірі «Екі жұлдыз, бір тілек» әдісімен бағалайды. Ұпайды «🏆 Ұпай» тақтасына жазасыз."],
+ who:["⭐","Топтар бірін-бірі бағалайды","«Екі жұлдыз, бір тілек»"],desc:[["Сұраққа ғылыми дұрыс жауап",2],["Сызбасы дұрыс",2],["Әр мүше қатысады",1],["Сұраққа дәлелді жауап береді",1]],
+ render(){return taskWrap(this,`<div class="grid g2">${GR.map((g,i)=>`<div class="card grp" style="--g:${G[i][3]}"><div class="gl">${G[i][0]} ${G[i][1]}</div><h3 style="margin:6px 0;font-family:Montserrat">«${g[0]}»</h3><p style="margin:0 0 10px">${g[1]}</p><button class="btn sm" onclick="tg(this)">Күтілетін жауап</button><div class="rv">${g[2]}</div></div>`).join('')}</div>`)}});
 
-/* 10 FS + SEN */
-const FS=[["Сперматозоид қозғалғыштығының төмендеуі ұрықтануға қалай әсер етеді?","Жұмыртқа жасушасына жетіп, оны ұрықтандыруы қиындайды, ұрықтану мүмкіндігі төмендейді."],["Сперматозоидтың қандай құрылымдары оның қозғалысын қамтамасыз етеді?","Құйрық (қозғалыс), ортаңғы бөліктегі митохондриялар (АТФ). Акросома — ферменттер."],["Аналық жыныс жасушасының мейоздық жетілуі неліктен маңызды?","Хромосома саны екі есе азаяды; жетілмеген жұмыртқа ұрықтанбайды немесе ұрықтың қалыпты дамуын қамтамасыз ете алмайды."],["Неліктен гаметалар саны жеткілікті болса да, ұрықтану мүмкіндігі төмен болуы мүмкін?","Сапасы да маңызды: қозғалғыштығы, құрылысы, генетикалық толықтығы, жетілу деңгейі."]];
+/* ===== 9 FS + SEN ===== */
+const FS=[["Сперматозоидтың қозғалғыштығы төмендесе, ұрықтану мүмкіндігі қалай өзгереді?","Жұмыртқа жасушасына жетуі қиындайды, мүмкіндік төмендейді."],["Аналық жасушаның мейоздық жетілуі неліктен маңызды?","Хромосома саны азаяды; жетілмеген жасуша ұрықтанбайды."],["Неге гаметалар саны көп болса да, ұрықтану мүмкіндігі төмен болуы мүмкін?","Сапасы да маңызды: қозғалғыштығы, құрылысы, жетілуі."]];
 add({id:"literacy",st:2,min:3,task:1,ws:"№5, №6",title:"Функционалдық сауаттылық · ЕБҚ",
- who:["👩‍🏫","Мұғалім","Мұғалім жауаптарды тыңдап, ЕБҚ оқушының парағын жеке тексереді."],
- desc:[["Жағдаятты талдап, негізгі мәселені анықтайды",1],["Сұрақтарға ғылыми дәлелді жауап береді",3]],
- render(){return taskWrap(this,"Өмірлік жағдаятты талдаңдар. ЕБҚ оқушы осы уақытта бейімделген тапсырманы (ЖП №6) орындайды.",
- `<div class="card" style="background:var(--ink);color:#e5eaf4;border:none"><span class="pill" style="background:rgba(255,255,255,.12);color:#fff">Өмірлік жағдаят</span><p style="margin:10px 0 0">Медициналық зертханада екі жұптың репродуктивті жасушалары зерттелді. <b>Бірінші жағдайда</b> сперматозоидтардың саны жеткілікті болғанымен, олардың бір бөлігінің қозғалғыштығы төмен екені анықталды. <b>Екінші жағдайда</b> аналық жыныс жасушаларының кейбірінде мейоздық жетілу толық аяқталмағаны байқалды.</p></div>
- <div class="grid g2" style="margin-top:14px">${FS.map((q,i)=>`<div class="card"><b>${i+1}. ${q[0]}</b><div style="margin-top:8px"><button class="btn sm" onclick="tg(this)">Жауабы</button></div><div class="rv">${q[1]}</div></div>`).join('')}</div>
- <div class="card" style="margin-top:14px"><h3>ЕБҚ: «Екі жасушаны таны»</h3>
- <div class="grid g2"><div><div>Сперматогенез нәтижесінде неше гамета түзіледі?</div><div class="mc" data-a="4"><button class="btn sm" onclick="mc(this)">1</button><button class="btn sm" onclick="mc(this)">2</button><button class="btn sm" onclick="mc(this)">4</button></div>
- <div>Оогенез нәтижесінде неше жұмыртқа жасушасы түзіледі?</div><div class="mc" data-a="1"><button class="btn sm" onclick="mc(this)">1</button><button class="btn sm" onclick="mc(this)">3</button><button class="btn sm" onclick="mc(this)">4</button></div></div>
- <div><p style="margin:0 0 6px">Сперматозоид <span class="blank" data-a="қозғалғыш" onclick="pb(this)">?</span> жасуша. Жұмыртқа жасушасы <span class="blank" data-a="ірі" onclick="pb(this)">?</span> болады. Екі үдерісте де <span class="blank" data-a="мейоз" onclick="pb(this)">?</span> жүреді.</p>
- <button class="word" onclick="pw(this)">мейоз</button><button class="word" onclick="pw(this)">қозғалғыш</button><button class="word" onclick="pw(this)">ірі</button></div></div></div>`)}});
+ teach:["Жағдаятты оқып бересіз, топтар 3 сұраққа ауызша жауап береді.","Осы уақытта ЕБҚ оқушы Жұмыс парағы №6-ны орындайды. Тақтадағы ЕБҚ бөлігін сол оқушы орындаса да болады."],
+ who:["👩‍🏫","Мұғалім","Мұғалім тыңдап, бағалайды."],desc:[["Жағдаятты талдайды",1],["Ғылыми дәлелді жауап береді",3]],
+ render(){return taskWrap(this,`<div class="card" style="background:linear-gradient(150deg,#1b1240,#3b237f);color:#ece8ff;border:none"><span class="pill" style="background:rgba(255,255,255,.14);color:#fff">Өмірлік жағдаят</span><p style="margin:10px 0 0;font-size:18.5px">Зертханада екі жұптың жасушалары зерттелді. <b>Бірінші жағдайда</b> сперматозоидтар саны жеткілікті, бірақ бір бөлігінің қозғалғыштығы төмен. <b>Екінші жағдайда</b> кейбір аналық жасушаларда мейоздық жетілу толық аяқталмаған.</p></div>
+ <div class="grid g3" style="margin-top:14px">${FS.map((q,i)=>`<div class="card"><b>${i+1}. ${q[0]}</b><div style="margin-top:10px"><button class="btn sm" onclick="tg(this)">Жауабы</button></div><div class="rv">${q[1]}</div></div>`).join('')}</div>
+ <div class="card" style="margin-top:14px"><span class="pill">ЕБҚ · «Екі жасушаны таны»</span><div class="grid g2" style="margin-top:10px">
+ <div>Сперматогенез нәтижесінде неше гамета түзіледі?<div class="mc" data-a="4"><button class="btn sm" onclick="mc(this)">1</button><button class="btn sm" onclick="mc(this)">2</button><button class="btn sm" onclick="mc(this)">4</button></div>Оогенез нәтижесінде неше жұмыртқа жасушасы түзіледі?<div class="mc" data-a="1"><button class="btn sm" onclick="mc(this)">1</button><button class="btn sm" onclick="mc(this)">3</button><button class="btn sm" onclick="mc(this)">4</button></div></div>
+ <div><p style="margin:0 0 6px">Сперматозоид <span class="blank" data-a="қозғалғыш" onclick="pb(this)">?</span> жасуша. Жұмыртқа жасушасы <span class="blank" data-a="ірі" onclick="pb(this)">?</span> болады. Екі үдерісте де <span class="blank" data-a="мейоз" onclick="pb(this)">?</span> жүреді.</p><button class="word" onclick="pw(this)">мейоз</button><button class="word" onclick="pw(this)">қозғалғыш</button><button class="word" onclick="pw(this)">ірі</button></div></div></div>`)}});
 
-/* 11 test */
+/* ===== 10 TEST + QUIZ ===== */
 const TK=["B","D","C","A","C","B","A","B","B","B"];
-add({id:"test",st:3,min:4,task:1,ws:"№7",title:"Тест",
- who:["🔄","Өзара бағалау","Оқушылар парақтарын алмасып, тақтадағы кілт бойынша тексереді."],
- desc:[["Әр дұрыс жауап — 1 ұпай",10],["9–10 «өте жақсы», 7–8 «жақсы», 5–6 «орташа»",0]],
- render(){return taskWrap(this,"Жұмыс парағы №7 бойынша 10 сұрақтық тестті орындаңдар. Уақыт біткен соң парақтарды алмасып, кілтті ашамыз.",
- `<div class="card"><h3>Жауап кілті</h3><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px">${TK.map((k,i)=>`<div class="h" style="border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;cursor:pointer" onclick="this.querySelector('b').style.visibility='visible'"><div class="muted" style="font-size:14px">${i+1}-сұрақ</div><b style="font-size:34px;visibility:hidden">${k}</b></div>`).join('')}</div>
- <button class="btn sm" style="margin-top:12px" onclick="document.querySelectorAll('#main .h b').forEach(b=>b.style.visibility='visible')">Барлығын ашу</button></div>`)}});
-
-/* 12 quiz */
-const QZ=[["Түзілу сатысы қай үдеріске тән?",["Оогенез","Сперматогенез","Екеуіне де","Ешқайсысына"],1],["Бір 1-реттік сперматоциттен неше сперматозоид түзіледі?",["1","2","3","4"],3],["Оогенезде түзілетін шағын жасушалар:",["Сперматидалар","Оогониялар","Полярлы денешіктер","Сомалық жасушалар"],2],["Оогониялар қашан көбейеді?",["Жатырішілік кезеңде","Жыныстық жетілуде","Өмір бойы","Ұрықтанудан кейін"],0],["Мейоздан кейінгі гаметаның хромосома жиынтығы:",["2n","n","4n","3n"],1],["Сперматозоидтың қай бөлігінде митохондриялар бар?",["Бас бөлігі","Акросома","Ортаңғы бөлігі","Құйрық ұшы"],2]];
+const QZ=[["Түзілу сатысы қай үдеріске тән?",["Оогенез","Сперматогенез","Екеуіне де","Ешқайсысына"],1],["Бір 1-реттік сперматоциттен неше сперматозоид түзіледі?",["1","2","3","4"],3],["Оогенезде түзілетін шағын жасушалар:",["Сперматидалар","Оогониялар","Полярлы денешіктер","Сомалық жасушалар"],2],["Оогониялар қашан көбейеді?",["Жатырішілік кезеңде","Жыныстық жетілуде","Өмір бойы","Ұрықтанудан кейін"],0],["Сперматозоидтың қай бөлігінде митохондриялар бар?",["Бас бөлігі","Акросома","Ортаңғы бөлігі","Құйрық ұшы"],2]];
 let qi=0,qShown=false,qLeft=20,qIv=null;
-add({id:"quiz",st:3,min:3,task:1,title:"Жылдам бекіту: квиз",onHide:()=>{clearInterval(qIv);qIv=null},
- who:["⚡","Бүкіл сынып","Бірінші дұрыс жауап берген топқа +1 ұпай (ұпай тақтасына)."],
- desc:[["Сұраққа 20 секундта дұрыс жауап береді",1]],
- render(){return taskWrap(this,"Әр сұраққа 20 секунд. Топтар қолын көтеріп жауап береді.",`<div class="qz" id="qz"></div>`)},after(){drawQ()}});
+add({id:"test",st:3,min:4,task:1,ws:"№7",title:"Бекіту: тест және квиз",onHide:()=>{clearInterval(qIv);qIv=null},
+ teach:["Оқушылар Жұмыс парағы №7-дегі тестті орындайды (2 мин).","Парақтарын көршісімен алмасып, «Тест кілті» бөлімі арқылы тексереді.","Соңында «Жылдам квиз»: әр сұраққа 20 секунд, бірінші дұрыс жауап берген топқа +1 ұпай."],
+ who:["🔄","Өзара бағалау + бүкіл сынып","Тест кілтпен тексеріледі, квизде топтар ұпай алады."],desc:[["Тестте әр дұрыс жауап",10],["Квизде дұрыс жауап",1]],
+ render(){return taskWrap(this,`<div class="tabs" id="ttabs"><button class="on" onclick="ttab(0,this)">🔑 Тест кілті</button><button onclick="ttab(1,this)">⚡ Жылдам квиз</button></div><div id="tbody"></div>`)},
+ after(){ttab(0,$('#ttabs button'))}});
 
-/* 13 score */
-add({id:"score",st:3,title:"Ұпай тақтасы",render(){return head(this,"Сабақ бойы жиналған ұпайлар. Сандарды басып өзгертуге болады, жалпы ұпай автоматты түрде есептеледі.")+`<div style="overflow-x:auto">${boardHTML()}</div><div style="margin-top:12px;display:flex;gap:8px"><button class="btn sm" onclick="resetSC()">Нөлдеу</button></div>`}});
-
-/* 14 reflection */
+/* ===== 11 REFLECTION ===== */
 let V={g:0,y:0,r:0};
-add({id:"reflection",st:3,min:2,title:"Рефлексия және үй тапсырмасы",render(){
- return head(this,"Сабақ басындағы жұптар қайта бұрылып, «Біздің зиготамыз» әдісімен бүгін үйренген бір жаңа білімін айтады (n + n = 2n: екі білім қосылып, бір толық түсінік береді). Содан соң әр оқушы өз түсін таңдайды.")+
- `<div class="lights">${[["g","#22c55e","Толық түсіндім","Басқаларға түсіндіре аламын"],["y","#eab308","Түсіндім, сұрақтарым бар","Кейбір тұстарын қайталау керек"],["r","#ef4444","Қиындық туды","Көмек керек"]].map(l=>`<div class="light" onclick="V.${l[0]}++;this.querySelector('.c').textContent=V.${l[0]}"><div class="bl" style="background:${l[1]}"></div><b>${l[2]}</b><div class="muted">${l[3]}</div><div class="c">${V[l[0]]}</div></div>`).join('')}</div>
- <div class="grid g2" style="margin-top:16px"><div class="card"><h3>Үй тапсырмасы</h3><ul style="margin:6px 0 0;padding-left:20px"><li>§27, 140–143-беттерді оқу;</li><li>5.2-суреттегі салыстыру сызбасын дәптерге салу;</li><li>«Білімдеріңді тексеріңдер»: оогенездің сперматогенезден ерекшеліктерін түсіндіру.</li></ul></div>
- <div class="card"><h3>Шығармашылық (таңдау бойынша)</h3><p style="margin:0">«Ұрықтанудың биологиялық үйлесімі» тақырыбына инфографика немесе 3D модель (пластилин, қағаз) жасау.</p></div></div>`}});
+add({id:"reflection",st:3,min:2,title:"Рефлексия · үй тапсырмасы",
+ teach:["Сабақ басындағы жұптар қайта бұрылып, бүгін үйренген бір жаңа білімін айтады («Біздің зиготамыз»).","Әр оқушы тақтадағы өз түсін басады.","«🏆 Ұпай» тақтасынан жеңімпаз топты жариялап, үй тапсырмасын бересіз."],
+ render(){return head(this)+`<div class="lights">${[["g","#22c55e","Толық түсіндім","Басқаға түсіндіре аламын"],["y","#eab308","Сұрақтарым бар","Кейбір тұсын қайталаймын"],["r","#ef4444","Қиындық туды","Көмек керек"]].map(l=>`<div class="card light" onclick="V.${l[0]}++;this.querySelector('.c').textContent=V.${l[0]}"><div class="bl" style="background:${l[1]};color:${l[1]}"></div><b style="font-size:19px">${l[2]}</b><div class="muted">${l[3]}</div><div class="c">${V[l[0]]}</div></div>`).join('')}</div>
+ <div class="grid g2" style="margin-top:16px"><div class="card"><span class="pill">Үй тапсырмасы</span><ul style="margin:10px 0 0;padding-left:20px"><li>§27, 140–143-беттерді оқу;</li><li>5.2-суреттегі салыстыру сызбасын дәптерге салу.</li></ul></div>
+ <div class="card"><span class="pill s3">Шығармашылық (таңдау бойынша)</span><p style="margin:10px 0 0">«Ұрықтанудың биологиялық үйлесімі» тақырыбына инфографика немесе пластилиннен модель жасау.</p></div></div>
+ <div style="margin-top:16px"><button class="btn pr" onclick="openScore()">🏆 Жеңімпаз топ</button></div>`}});
 
-/* ================= helpers ================= */
-function head(s,lead){const st=STG[s.st]||["Кіріспе","s1"];return `<div class="hd"><div><div class="kicker"><span class="pill ${st[1]}">${st[0]}</span>${s.min?`<span class="pill min">${s.min} мин</span>`:''}${s.ws?`<span class="pill min">Жұмыс парағы ${s.ws}</span>`:''}</div><h1>${s.title}</h1>${lead?`<p class="lead">${lead}</p>`:''}</div></div>`}
-function taskWrap(s,lead,body){
- const ws=s.ws?`<div class="ws">📄 Жұмыс парағымен жұмыс · ${s.ws}</div>`:`<div class="ws">✍️ Тапсырма орындау уақыты</div>`;
- return head(s,lead)+`<div class="layout"><div>${body}</div><div class="side">
- <div class="card timer" id="tmr"><div class="lbl">Уақыт</div>${ws}<div class="clock" id="clk">--:--</div><div class="bar"><i id="tbar" style="width:100%"></i></div><div class="ctl"><button class="go" id="tgo" onclick="tStart()">▶ Бастау</button><button onclick="tReset()">↺</button><button onclick="tAdd(60)">+1′</button></div></div>
- <div class="card who"><div class="ic">${s.who[0]}</div><div><b>Кім тексереді</b><div style="font-weight:700;font-size:18px">${s.who[1]}</div><div class="muted" style="font-size:15px">${s.who[2]}</div></div></div>
- <div class="card desc"><h3>Дескрипторлар</h3><ul>${s.desc.map(d=>`<li onclick="this.classList.toggle('on')"><span class="cb">✓</span><span>${d[0]}</span>${d[1]?`<span class="pt">${d[1]} ұпай</span>`:''}</li>`).join('')}</ul>${s.desc.some(d=>d[1])?`<div style="margin-top:8px;font-weight:700">Барлығы: ${s.desc.reduce((a,d)=>a+d[1],0)} ұпай</div>`:''}</div>
- </div></div>`}
+/* ===== helpers ===== */
+function miniCell(c,t,s=54){return `<div style="width:${s}px;height:${s}px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff8,${c});display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-family:Montserrat;box-shadow:0 6px 18px ${c}66">${t}</div>`}
+function heroSVG(){let dots='';for(let i=0;i<46;i++){const a=i/46*Math.PI*2;dots+=`<circle cx="${300+Math.cos(a)*112}" cy="${200+Math.sin(a)*112}" r="${7+(i%3)*2}" fill="#f6b04a" opacity=".9"/>`}
+ let sp='';[[60,120,0],[40,230,1.2],[90,300,2.1],[20,170,3]].forEach((p,i)=>{sp+=`<g class="sw" style="animation-delay:${-i*1.7}s"><g transform="translate(${p[0]},${p[1]}) rotate(${[8,-6,-14,3][i]})"><ellipse cx="60" cy="0" rx="13" ry="8" fill="#9cc8ff"/><rect x="40" y="-2.5" width="10" height="5" rx="2" fill="#ff9a5a"/><path class="tl" d="M40 0 C28 -9,18 9,6 0 S-14 -9,-24 0" stroke="#9cc8ff" stroke-width="3" fill="none" stroke-linecap="round" style="animation-delay:${-i*.2}s"/></g></g>`});
+ return `<svg viewBox="0 0 480 384"><defs><radialGradient id="eg" cx="40%" cy="38%"><stop offset="0" stop-color="#ffe2a8"/><stop offset=".7" stop-color="#f0a42a"/><stop offset="1" stop-color="#c47a10"/></radialGradient><radialGradient id="gl"><stop offset="0" stop-color="#f0a42a" stop-opacity=".45"/><stop offset="1" stop-color="#f0a42a" stop-opacity="0"/></radialGradient></defs>
+ <circle cx="300" cy="200" r="190" fill="url(#gl)"/><g class="pulse">${dots}<circle cx="300" cy="200" r="100" fill="#fff4d8" opacity=".25"/><circle cx="300" cy="200" r="92" fill="url(#eg)"/><circle cx="285" cy="190" r="28" fill="#b26b00" opacity=".75"/></g>${sp}
+ <text x="300" y="350" text-anchor="middle" fill="#ffd27a" font-family="Montserrat" font-weight="800" font-size="20">n + n = 2n</text></svg>`}
+function head(s){const st=STG[s.st];const t=s.teach?`<div class="teach"><div class="ic">👩‍🏫</div><div><b>Мұғалімге</b><ol>${s.teach.map(x=>`<li>${x}</li>`).join('')}</ol></div></div>`:'';
+ return `<div class="hd"><div><div class="kick"><span class="pill ${st[1]}">${st[0]}</span><span class="pill w">⏱ ${s.min} мин</span>${s.ws?`<span class="pill w">📄 Жұмыс парағы ${s.ws}</span>`:''}</div><h1>${s.title}</h1></div></div>${t}`}
+function taskWrap(s,body){const C=2*Math.PI*84;
+ return head(s)+`<div class="layout"><div>${body}</div><div class="side">
+ <div class="card timer" id="tmr"><div class="lbl">Тапсырма уақыты</div><div class="ws">${s.ws?'📄 Жұмыс парағымен жұмыс · '+s.ws:'✍️ Тапсырманы орындау'}</div>
+ <div class="ring"><svg width="190" height="190"><circle cx="95" cy="95" r="84" stroke="rgba(255,255,255,.14)" stroke-width="12" fill="none"/><circle id="rg" cx="95" cy="95" r="84" stroke="url(#tg)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="0"/><defs><linearGradient id="tg"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs></svg><div class="clk" id="clk">--:--</div></div>
+ <div class="ctl"><button class="go" id="tgo" onclick="tStart()">▶ Бастау</button><button onclick="tReset()" title="Қайта">↺</button><button onclick="tAdd(60)">+1′</button></div></div>
+ <div class="card who"><div class="ic">${s.who[0]}</div><div><small>Кім тексереді</small><div style="font-weight:800;font-size:18px">${s.who[1]}</div><div class="muted" style="font-size:15px">${s.who[2]}</div></div></div>
+ <div class="card desc"><h3>Дескрипторлар</h3><ul>${s.desc.map(d=>`<li onclick="this.classList.toggle('on')"><span class="cb">✓</span><span>${d[0]}</span><span class="pt">${d[1]} ұп.</span></li>`).join('')}</ul></div></div></div>`}
 function tg(b){b.closest('.card').classList.toggle('open')}
 function tf(b,v){const r=b.closest('.tf');if(r.classList.contains('d'))return;const ok=String(v)===r.dataset.a;r.classList.add('d',ok?'ok':'no');r.querySelector('.a').innerHTML=`<b style="color:${r.dataset.a==='1'?'var(--ok)':'var(--bad)'}">${r.dataset.a==='1'?'Дұрыс':'Бұрыс'}</b>`}
 function mc(b){const x=b.parentNode;if(x.dataset.d)return;x.dataset.d=1;x.querySelectorAll('button').forEach(k=>{if(k.textContent===x.dataset.a)k.classList.add('ok')});if(b.textContent!==x.dataset.a)b.classList.add('no')}
-let BL=null;function pb(e){if(e.dataset.d)return;document.querySelectorAll('.blank').forEach(x=>x.style.borderColor='');e.style.borderColor='var(--ac)';BL=e}
+let BL=null;function pb(e){if(e.dataset.d)return;document.querySelectorAll('.blank').forEach(x=>x.style.borderColor='');e.style.borderColor='var(--vi)';BL=e}
 function pw(w){if(!BL)return;if(w.textContent===BL.dataset.a){BL.textContent=w.textContent;BL.style.color='var(--ok)';BL.style.borderColor='var(--ok)';BL.dataset.d=1;w.classList.add('u');BL=null}else BL.style.borderColor='var(--bad)'}
+function toggleTeach(){document.body.classList.toggle('noteach');$('#teachBtn').classList.toggle('on',!document.body.classList.contains('noteach'))}
 
-/* ================= timer (per screen) ================= */
-const TM={};let tIv=null;
+/* ===== video tabs ===== */
+function vtab(i,b){document.querySelectorAll('#vtabs button').forEach(x=>x.classList.toggle('on',x===b));stop3D();
+ if(i===0)$('#vbody').innerHTML=`<div class="layout"><div class="vid"><video controls preload="metadata" playsinline poster="img/poster.jpg"><source src="video.mp4" type="video/mp4"></video></div><div class="side"><div class="card"><h3>Видеодан кейін сұраңыз</h3><ul style="margin:6px 0 0;padding-left:20px;font-size:16.5px"><li>Сперматогенездің неше сатысы бар?</li><li>Оогенезде қай саты жоқ?</li><li>Бір жасушадан неше гамета түзіледі?</li></ul></div><div class="card"><div style="display:grid;gap:8px"><div style="background:var(--sp-s);border-radius:12px;padding:10px 12px"><b style="color:#1d5fd0">♂ Сперматогенез</b><br>Көбею → Өсу → Жетілу → Түзілу</div><div style="background:var(--oo-s);border-radius:12px;padding:10px 12px"><b style="color:#b26b00">♀ Оогенез</b><br>Көбею → Өсу → Жетілу</div></div></div></div></div>`;
+ else{$('#vbody').innerHTML=`<div class="tabs" id="m3tabs"><button class="on" onclick="mode3D('fert',this)">Ұрықтану</button><button onclick="mode3D('sperm',this)">Сперматозоид</button><button onclick="mode3D('egg',this)">Жұмыртқа жасушасы</button><button onclick="mode3D('cmp',this)">4 және 1</button></div><div id="v3d"></div><p class="muted" style="font-size:15px">Айналдыру үшін сүйреңіз, жақындату үшін шиыршықты не екі саусақты пайдаланыңыз.</p>`;init3D()}}
+
+/* ===== board drag & drop ===== */
+let pick=null;
+function btab(i,b){document.querySelectorAll('#btabs button').forEach(x=>x.classList.toggle('on',x===b));
+ if(i===0){$('#bbody').innerHTML=`<div class="pool" id="pool">${shuffle(SORT).map(s=>`<div class="chipc" data-a="${s[1]}">${s[0]}</div>`).join('')}</div>
+ <div class="cols"><div class="zone z1" data-z="sp"><h3>♂ Сперматогенез</h3></div><div class="zone z3" data-z="both"><h3>⚭ Екеуіне ортақ</h3></div><div class="zone z2" data-z="oo"><h3>♀ Оогенез</h3></div></div>
+ <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap"><button class="btn pr" onclick="checkSort()">✓ Тексеру</button><button class="btn" onclick="btab(0,document.querySelector('#btabs button'))">↺ Қайта</button><span class="res" id="res"></span></div>`}
+ else{$('#bbody').innerHTML=`<p class="muted" style="margin:0 0 10px">Сперматогенез кезіндегі жасушаларды пайда болу ретімен қойыңдар.</p><div class="pool" id="pool">${shuffle(ORDER.map((o,k)=>[o[0],k])).map(s=>`<div class="chipc" data-a="${s[1]}">${s[0]}</div>`).join('')}</div>
+ <div class="slots">${ORDER.map((o,k)=>`<div class="slot zone" data-z="${k}" data-one="1"><span class="num">${k+1}</span><span class="fm">${o[1]}</span></div>`).join('')}</div>
+ <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap"><button class="btn pr" onclick="checkOrder()">✓ Тексеру</button><button class="btn" onclick="btab(1,document.querySelectorAll('#btabs button')[1])">↺ Қайта</button><span class="res" id="res"></span></div>`}
+ bindDrag()}
+function placeIn(card,zone){if(!zone)return;if(zone.dataset.one){const ex=zone.querySelector('.chipc');if(ex&&ex!==card)$('#pool').appendChild(ex)}zone.appendChild(card);card.classList.remove('ok','no','sel');pick=null}
+function bindDrag(){
+ document.querySelectorAll('#bbody .chipc').forEach(c=>{
+  c.onpointerdown=e=>{e.preventDefault();const r=c.getBoundingClientRect();const g=c.cloneNode(true);g.classList.add('ghost');g.style.width=r.width+'px';g.style.left=r.left+'px';g.style.top=r.top+'px';document.body.appendChild(g);
+   const ox=e.clientX-r.left,oy=e.clientY-r.top,sx=e.clientX,sy=e.clientY;let moved=false,hov=null;c.style.opacity=.35;
+   const mv=ev=>{if(Math.abs(ev.clientX-sx)+Math.abs(ev.clientY-sy)>6)moved=true;g.style.left=(ev.clientX-ox)+'px';g.style.top=(ev.clientY-oy)+'px';const el=document.elementFromPoint(ev.clientX,ev.clientY);const z=el&&el.closest('.zone,#pool');if(hov&&hov!==z)hov.classList.remove('hov');if(z){z.classList.add('hov');hov=z}};
+   const up=ev=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);g.remove();c.style.opacity='';if(hov)hov.classList.remove('hov');
+    if(moved){const el=document.elementFromPoint(ev.clientX,ev.clientY);const z=el&&el.closest('.zone,#pool');if(z){if(z.id==='pool'){z.appendChild(c);c.classList.remove('ok','no')}else placeIn(c,z)}}
+    else{document.querySelectorAll('#bbody .chipc').forEach(x=>x.classList.remove('sel'));if(pick===c){pick=null}else{pick=c;c.classList.add('sel')}}};
+   addEventListener('pointermove',mv);addEventListener('pointerup',up)}});
+ document.querySelectorAll('#bbody .zone').forEach(z=>z.onclick=e=>{if(pick&&!e.target.closest('.chipc'))placeIn(pick,z)});
+}
+function checkSort(){let ok=0,n=0;document.querySelectorAll('#bbody .zone .chipc').forEach(c=>{n++;const good=c.dataset.a===c.parentNode.dataset.z;c.classList.toggle('ok',good);c.classList.toggle('no',!good);if(good)ok++});
+ $('#res').textContent=`${ok} / ${SORT.length} дұрыс`+(ok===SORT.length?' 🎉':(n<SORT.length?' · барлық карточканы орналастырыңдар':''))}
+function checkOrder(){let ok=0;document.querySelectorAll('#bbody .slot').forEach(s=>{const c=s.querySelector('.chipc');const good=c&&c.dataset.a===s.dataset.z;s.classList.toggle('ok',!!good);if(c){c.classList.toggle('ok',!!good);c.classList.toggle('no',!good)}if(good)ok++});
+ $('#res').textContent=`${ok} / ${ORDER.length} дұрыс`+(ok===ORDER.length?' 🎉 Формулалар ашылды!':'')}
+
+/* ===== test tabs + quiz ===== */
+function ttab(i,b){document.querySelectorAll('#ttabs button').forEach(x=>x.classList.toggle('on',x===b));clearInterval(qIv);qIv=null;
+ if(i===0)$('#tbody').innerHTML=`<div class="card"><h3>Тест кілті (Жұмыс парағы №7)</h3><p class="muted" style="margin:0 0 12px;font-size:16px">Ұяшықты бассаңыз, жауап ашылады.</p><div class="keygrid">${TK.map((k,j)=>`<div onclick="this.querySelector('b').style.visibility='visible'"><div class="muted" style="font-size:14px">${j+1}-сұрақ</div><b>${k}</b></div>`).join('')}</div><button class="btn sm" style="margin-top:12px" onclick="document.querySelectorAll('.keygrid b').forEach(b=>b.style.visibility='visible')">Барлығын ашу</button><p class="muted" style="margin:12px 0 0;font-size:15.5px">9–10 — өте жақсы · 7–8 — жақсы · 5–6 — орташа</p></div>`;
+ else{$('#tbody').innerHTML=`<div class="qz" id="qz"></div>`;drawQ()}}
+function drawQ(){const z=$('#qz');if(!z)return;const q=QZ[qi];z.className='qz'+(qShown?' shown':'');
+ z.innerHTML=`<div class="qh"><span>Сұрақ ${qi+1} / ${QZ.length}</span><span class="qt" id="qt">${qLeft}</span></div><div class="qq">${q[0]}</div><div class="ops">${q[1].map((o,j)=>`<button class="op ${j===q[2]?'c':''}" onclick="qReveal()"><span>${'ABCD'[j]}</span>${o}</button>`).join('')}</div><div class="qbar"><i id="qb" style="width:${qLeft/20*100}%"></i></div>
+ <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><button class="btn sm" onclick="qGo()">${qIv?'⏸ Тоқтату':'▶ 20 секунд'}</button><button class="btn sm" onclick="qReveal()">Жауабы</button><button class="btn sm" onclick="qNext(-1)">←</button><button class="btn sm pr" onclick="qNext(1)">Келесі сұрақ →</button></div>`}
+function qGo(){if(qIv){clearInterval(qIv);qIv=null;drawQ();return}qIv=setInterval(()=>{qLeft--;if(qLeft<=0){qLeft=0;clearInterval(qIv);qIv=null;qShown=true;drawQ();return}const e=$('#qt');if(e){e.textContent=qLeft;$('#qb').style.width=(qLeft/20*100)+'%'}},1000);drawQ()}
+function qReveal(){qShown=true;clearInterval(qIv);qIv=null;drawQ()}
+function qNext(d){qi=(qi+d+QZ.length)%QZ.length;qShown=false;qLeft=20;clearInterval(qIv);qIv=null;drawQ()}
+
+/* ===== timer ===== */
+const TM={};
 function T(){const s=S[cur];if(!TM[s.id])TM[s.id]={total:s.min*60,left:s.min*60,run:false,end:0};return TM[s.id]}
 function tDraw(){const c=$('#clk');if(!c)return;const t=T();if(t.run){t.left=Math.max(0,Math.round((t.end-Date.now())/1000));if(t.left===0)t.run=false}
  c.textContent=String(Math.floor(t.left/60)).padStart(2,'0')+':'+String(t.left%60).padStart(2,'0');
- $('#tbar').style.width=(t.left/t.total*100)+'%';const box=$('#tmr');box.classList.toggle('warn',t.left>0&&t.left<=30);box.classList.toggle('end',t.left===0);
+ const C=2*Math.PI*84;$('#rg').setAttribute('stroke-dashoffset',C*(1-t.left/t.total));
+ const b=$('#tmr');b.classList.toggle('warn',t.left>0&&t.left<=30);b.classList.toggle('end',t.left===0);
  $('#tgo').textContent=t.run?'⏸ Тоқтату':(t.left===0?'Уақыт бітті':(t.left<t.total?'▶ Жалғастыру':'▶ Бастау'))}
 function tStart(){const t=T();if(t.left===0)return;if(t.run){t.run=false;t.left=Math.max(0,Math.round((t.end-Date.now())/1000))}else{t.run=true;t.end=Date.now()+t.left*1000}tDraw()}
 function tReset(){const t=T();t.run=false;t.left=t.total;tDraw()}
 function tAdd(s){const t=T();t.total+=s;if(t.run)t.end+=s*1000;else t.left+=s;tDraw()}
 setInterval(tDraw,250);
 
-/* ================= quiz ================= */
-function drawQ(){const z=$('#qz');if(!z)return;const q=QZ[qi];
- z.className='qz'+(qShown?' shown':'');
- z.innerHTML=`<div class="qh"><span>Сұрақ ${qi+1} / ${QZ.length}</span><span class="qt" id="qt">${qLeft}</span></div><div class="qq">${q[0]}</div><div class="ops">${q[1].map((o,j)=>`<button class="op ${j===q[2]?'c':''}" onclick="qReveal()"><span>${'ABCD'[j]}</span>${o}</button>`).join('')}</div><div class="qbar"><i id="qb" style="width:${qLeft/20*100}%"></i></div>
- <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><button class="btn sm" onclick="qGo()">${qIv?'⏸ Тоқтату':'▶ 20 секунд'}</button><button class="btn sm" onclick="qReveal()">Жауабын көрсету</button><button class="btn sm" onclick="qNext(-1)">←</button><button class="btn sm dark" onclick="qNext(1)">Келесі сұрақ →</button></div>`}
-function qGo(){if(qIv){clearInterval(qIv);qIv=null;drawQ();return}qIv=setInterval(()=>{qLeft--;if(qLeft<=0){qLeft=0;clearInterval(qIv);qIv=null;qShown=true;drawQ();return}const e=$('#qt');if(e){e.textContent=qLeft;$('#qb').style.width=(qLeft/20*100)+'%'}},1000);drawQ()}
-function qReveal(){qShown=true;clearInterval(qIv);qIv=null;drawQ()}
-function qNext(d){qi=(qi+d+QZ.length)%QZ.length;qShown=false;qLeft=20;clearInterval(qIv);qIv=null;drawQ()}
-
-/* ================= scoreboard ================= */
-const ACT=["Миға шабуыл","Оқулық","Жеке","Жұптық","Топтық","ФС","Тест","Квиз"];
-let SC;try{SC=JSON.parse(localStorage.getItem('sc27'))}catch(e){}
+/* ===== scoreboard ===== */
+const ACT=["Миға шабуыл","Тақта","Оқулық","Жеке","Жұптық","Топтық","ФС","Тест/квиз"];
+let SC;try{SC=JSON.parse(localStorage.getItem('sc27b'))}catch(e){}
 if(!SC||SC.length!==4||SC[0].length!==ACT.length)SC=G.map(()=>ACT.map(()=>0));
-function saveSC(){try{localStorage.setItem('sc27',JSON.stringify(SC))}catch(e){}}
+function saveSC(){try{localStorage.setItem('sc27b',JSON.stringify(SC))}catch(e){}}
 function boardHTML(){const tot=SC.map(r=>r.reduce((a,b)=>a+b,0)),mx=Math.max(...tot);
  return `<table class="t sc"><thead><tr><th>Топ</th>${ACT.map(a=>`<th>${a}</th>`).join('')}<th>Барлығы</th></tr></thead><tbody>${G.map((g,i)=>`<tr class="${mx>0&&tot[i]===mx?'lead':''}"><td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${g[3]};margin-right:8px"></span><b>${g[0]}</b> <span class="muted">${g[1]}</span></td>${SC[i].map((v,j)=>`<td><button class="cellb" onclick="sc(${i},${j},1)">${v}</button><button class="minus" onclick="sc(${i},${j},-1)">−</button></td>`).join('')}<td class="tot">${tot[i]}${mx>0&&tot[i]===mx?' 🏆':''}</td></tr>`).join('')}</tbody></table>`}
 function sc(i,j,d){SC[i][j]=Math.max(0,SC[i][j]+d);saveSC();document.querySelectorAll('.sc').forEach(t=>t.outerHTML=boardHTML())}
 function resetSC(){SC=G.map(()=>ACT.map(()=>0));saveSC();document.querySelectorAll('.sc').forEach(t=>t.outerHTML=boardHTML())}
-function openScore(){$('#mbody').innerHTML='<h2>Ұпай тақтасы</h2><div style="overflow-x:auto">'+boardHTML()+'</div>';$('#modal').classList.add('on')}
+function openScore(){$('#mbody').innerHTML='<h2>🏆 Ұпай тақтасы</h2><p class="muted" style="margin:0 0 12px">Санды бассаңыз +1 қосылады, «−» батырмасы 1 ұпайды алып тастайды. Жалпы ұпай автоматты түрде есептеледі.</p><div style="overflow-x:auto">'+boardHTML()+'</div><button class="btn sm" style="margin-top:12px" onclick="resetSC()">Нөлдеу</button>';$('#modal').classList.add('on')}
 function closeM(){$('#modal').classList.remove('on')}
 function fs(){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{})}catch(e){}}
 
-/* ================= navigation ================= */
+/* ===== navigation ===== */
 let cur=0;
-function go(i){i=Math.max(0,Math.min(S.length-1,i));if(i===cur&&$('#main').innerHTML)return;location.hash=S[i].id}
+function go(i){i=Math.max(0,Math.min(S.length-1,i));location.hash=S[i].id}
 function show(){const h=location.hash.slice(1);let i=S.findIndex(s=>s.id===h);if(i<0)i=0;
- if(S[cur]&&S[cur].onHide&&cur!==i)S[cur].onHide();cur=i;const s=S[i];
- $('#main').innerHTML=`<div class="screen">${s.render()}</div>`;$('#main').scrollTop=0;
- if(s.after)s.after();if(s.onShow)s.onShow();tDraw();
- // stages bar
- $('#stages').innerHTML=[0,1,2,3].map(k=>{const items=S.map((x,j)=>[x,j]).filter(([x])=>x.st===k);if(!items.length)return'';const on=items.some(([,j])=>j===cur);
-  return `<div class="stg ${on?'on':''}"><b>${k===0?'Кіріспе':STG[k][0].replace('Сабақтың ','')}</b>${items.map(([x,j])=>`<button class="dot ${j===cur?'on':(j<cur?'done':'')}" title="${x.title}" onclick="go(${j})"></button>`).join('')}</div>`}).join('');
- $('#navmid').innerHTML=`<b>${i+1} / ${S.length}</b> · ${s.title}${s.min?` · ${s.min} мин`:''}`;}
+ if(S[cur]&&S[cur].onHide)S[cur].onHide();cur=i;const s=S[i];
+ $('#main').innerHTML=`<div class="screen">${s.render()}</div>`;$('#main').scrollTop=0;if(s.after)s.after();tDraw();
+ $('#stages').innerHTML=[0,1,2,3].map(k=>{const it=S.map((x,j)=>[x,j]).filter(([x])=>x.st===k);const on=it.some(([,j])=>j===cur);
+  return `<div class="stg ${on?'on':''}"><b>${k===0?'Кіріспе':STG[k][2]}</b>${it.map(([x,j])=>`<button class="dot ${j===cur?'on':(j<cur?'done':'')}" title="${x.title}" onclick="go(${j})"></button>`).join('')}</div>`}).join('');
+ $('#navmid').innerHTML=`<b>${i+1} / ${S.length}</b> · ${s.title}${s.min?` · ${s.min} мин`:''}`;$('#prog').style.width=(i/(S.length-1)*100)+'%'}
 addEventListener('hashchange',show);
-addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1)});
+addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(e.target.tagName))return;if(e.key==='ArrowRight'||e.key==='PageDown')go(cur+1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(cur-1)});
 
-/* ================= 3D ================= */
+/* ===== 3D ===== */
 let R3=null;
-function init3D(){
- const box=$('#v3d');if(!box||typeof THREE==='undefined')return;
+function init3D(){const box=$('#v3d');if(!box||typeof THREE==='undefined')return;
  const W=()=>box.clientWidth,H=()=>box.clientHeight;
  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(2,devicePixelRatio));renderer.setSize(W(),H());renderer.outputEncoding=THREE.sRGBEncoding;box.prepend(renderer.domElement);
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(40,W()/H(),.1,200);camera.position.set(0,1,11);
- const ctl=new THREE.OrbitControls(camera,renderer.domElement);ctl.enableDamping=true;ctl.minDistance=3;ctl.maxDistance=22;ctl.autoRotate=true;ctl.autoRotateSpeed=0.6;
- scene.add(new THREE.HemisphereLight(0xbfd8ff,0x20140a,.5));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(4,6,8);scene.add(dl);
- const p1=new THREE.PointLight(0x4f8dff,1.2,40);p1.position.set(-8,2,6);scene.add(p1);const p2=new THREE.PointLight(0xffaa44,1,40);p2.position.set(8,-2,6);scene.add(p2);
+ const ctl=new THREE.OrbitControls(camera,renderer.domElement);ctl.enableDamping=true;ctl.minDistance=3;ctl.maxDistance=22;ctl.autoRotate=true;ctl.autoRotateSpeed=.6;
+ scene.add(new THREE.HemisphereLight(0xd8ccff,0x20140a,.5));const dl=new THREE.DirectionalLight(0xffffff,.9);dl.position.set(4,6,8);scene.add(dl);
+ const p1=new THREE.PointLight(0x7b5cff,1.2,40);p1.position.set(-8,2,6);scene.add(p1);const p2=new THREE.PointLight(0xffaa44,1,40);p2.position.set(8,-2,6);scene.add(p2);
  const gc=document.createElement('canvas');gc.width=gc.height=128;{const g=gc.getContext('2d');const r=g.createRadialGradient(64,64,0,64,64,64);r.addColorStop(0,'rgba(255,255,255,1)');r.addColorStop(.35,'rgba(255,255,255,.35)');r.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=r;g.fillRect(0,0,128,128)}
- const GT=new THREE.CanvasTexture(gc);
- const world=new THREE.Group();scene.add(world);
+ const GT=new THREE.CanvasTexture(gc);const world=new THREE.Group();scene.add(world);
  function cell(col,r){const g=new THREE.Group();const b=new THREE.Mesh(new THREE.SphereGeometry(1,48,32),new THREE.MeshStandardMaterial({color:col,roughness:.45,transparent:true,opacity:.9,emissive:new THREE.Color(col).multiplyScalar(.3)}));
-  const n=new THREE.Mesh(new THREE.SphereGeometry(.42,32,24),new THREE.MeshStandardMaterial({color:new THREE.Color(col).multiplyScalar(.5)}));const gl=new THREE.Sprite(new THREE.SpriteMaterial({map:GT,color:col,transparent:true,opacity:.3,blending:THREE.AdditiveBlending,depthWrite:false}));gl.scale.set(3.4,3.4,1);
-  g.add(gl,b,n);g.scale.setScalar(r);return g}
+  const n=new THREE.Mesh(new THREE.SphereGeometry(.42,32,24),new THREE.MeshStandardMaterial({color:new THREE.Color(col).multiplyScalar(.5)}));const gl=new THREE.Sprite(new THREE.SpriteMaterial({map:GT,color:col,transparent:true,opacity:.3,blending:THREE.AdditiveBlending,depthWrite:false}));gl.scale.set(3.4,3.4,1);g.add(gl,b,n);g.scale.setScalar(r);return g}
  function eggObj(R){const g=cell(0xf2a93b,1);const z=new THREE.Mesh(new THREE.SphereGeometry(1.08,48,32),new THREE.MeshStandardMaterial({color:0xfff1d0,transparent:true,opacity:.18,depthWrite:false}));g.add(z);
   let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};const geo=new THREE.SphereGeometry(1,14,10);
   for(let i=0;i<300;i++){const u=rnd()*2-1,th=rnd()*Math.PI*2,s=Math.sqrt(1-u*u),rr=1.14+rnd()*.16;const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color:new THREE.Color().setHSL(.06+rnd()*.04,.75,.55+rnd()*.1),emissive:0x3a1400,emissiveIntensity:.5}));m.position.set(s*Math.cos(th)*rr,s*Math.sin(th)*rr,u*rr);m.scale.setScalar(.045+rnd()*.028);g.add(m)}
@@ -418,19 +479,14 @@ function init3D(){
    const e=eggObj(1.3);e.position.set(2.6,0,0);world.add(e);lab('♀ 1 жұмыртқа жасушасы',e,new THREE.Vector3(0,1.85,0));
    [[4.6,1],[4.9,0],[4.5,-1]].forEach(p=>{const c=cell(0x8e93a8,.25);c.position.set(p[0],p[1],0);world.add(c)});lab('3 полярлы денешік',world.children[world.children.length-1],new THREE.Vector3(.2,-.6,0));camera.position.set(0,.5,11)}
   ctl.target.set(0,0,0);ctl.update()}
- build('fert');
- const v=new THREE.Vector3();
+ build('fert');const v=new THREE.Vector3();
  function loop(){if(!R3)return;R3.raf=requestAnimationFrame(loop);const t=(performance.now()-t0)/1000;
-  sperms.forEach((s,i)=>{tailUpd(s,t);if(mode==='fert'){const a=s.userData.a+t*.25,r=s.userData.r;s.position.set(Math.cos(a)*r,s.userData.y+Math.sin(t+i)*.2,Math.sin(a)*r);s.rotation.y=-a-Math.PI/2+Math.PI;s.lookAt(0,s.position.y,0);s.rotateY(-Math.PI/2)}
-   if(mode==='cmp')s.position.x=-4+Math.sin(t*1.2+i)*.12});
-  world.children.forEach(o=>{if(o.type==='Group'&&mode!=='fert'&&mode!=='sperm'&&mode!=='cmp')o.rotation.y=t*.15});
-  ctl.update();renderer.render(scene,camera);
-  const w=W(),h=H();labs.forEach(l=>{l.obj.updateMatrixWorld();v.copy(l.off);l.obj.localToWorld?v.applyMatrix4(l.obj.matrixWorld):0;
-   if(l.obj.parent&&l.obj.parent.userData&&l.obj.parent.userData.parts){/* part of sperm: off in parent space */}
-   v.copy(l.off).add(new THREE.Vector3().setFromMatrixPosition(l.obj.matrixWorld));v.project(camera);l.d.style.left=((v.x+1)/2*w)+'px';l.d.style.top=((1-v.y)/2*h)+'px';l.d.style.display=v.z<1?'block':'none'})}
- function rs(){renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix()}addEventListener('resize',rs);
- R3={renderer,build,rs,raf:0,ctl};loop();
-}
+  sperms.forEach((s,i)=>{tailUpd(s,t);if(mode==='fert'){const a=s.userData.a+t*.25,r=s.userData.r;s.position.set(Math.cos(a)*r,s.userData.y+Math.sin(t+i)*.2,Math.sin(a)*r);s.lookAt(0,s.position.y,0);s.rotateY(-Math.PI/2)}if(mode==='cmp')s.position.x=-4+Math.sin(t*1.2+i)*.12});
+  if(mode==='egg')world.children.forEach(o=>o.rotation.y=t*.15);
+  ctl.update();renderer.render(scene,camera);const w=W(),h=H();
+  labs.forEach(l=>{l.obj.updateMatrixWorld();v.copy(l.off).add(new THREE.Vector3().setFromMatrixPosition(l.obj.matrixWorld));v.project(camera);l.d.style.left=((v.x+1)/2*w)+'px';l.d.style.top=((1-v.y)/2*h)+'px';l.d.style.display=v.z<1?'block':'none'})}
+ function rs(){if(!R3)return;renderer.setSize(W(),H());camera.aspect=W()/H();camera.updateProjectionMatrix()}addEventListener('resize',rs);
+ R3={renderer,build,rs,raf:0};loop()}
 function stop3D(){if(!R3)return;cancelAnimationFrame(R3.raf);removeEventListener('resize',R3.rs);R3.renderer.dispose();R3=null}
 function mode3D(m,b){document.querySelectorAll('#m3tabs button').forEach(x=>x.classList.toggle('on',x===b));if(R3)R3.build(m)}
 
